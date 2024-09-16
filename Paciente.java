@@ -26,4 +26,9 @@ public class Paciente implements Serializable {
     public void setId(String id) {
         this.id = id;
     }
+
+    //Getter que devuelve el nombre del paciente.
+    public String getNombre() {
+        return nombre;
+    }
 }
