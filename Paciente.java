@@ -21,4 +21,9 @@ public class Paciente implements Serializable {
     public String getId() {
         return id;
     }
+
+    //Setter que permite modificar el valor del ID del paciente.
+    public void setId(String id) {
+        this.id = id;
+    }
 }
