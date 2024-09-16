@@ -31,4 +31,9 @@ public class Paciente implements Serializable {
     public String getNombre() {
         return nombre;
     }
+
+    //Setter que permite modificar el valor del nombre del paciente.
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 }
