@@ -7,6 +7,7 @@ public class Paciente implements Serializable {
     private String doctor;
     private String clinica;
 
+    //Constructor de la clase Paciente
     public Paciente(String id, String nombre, String doctor, String clinica) {
         this.id = id;
         this.nombre = nombre;
@@ -14,4 +15,10 @@ public class Paciente implements Serializable {
         this.clinica = clinica;
     }
 
+    //Getters y Setters de la clase
+
+    //Devuelve el valor del ID del paciente.
+    public String getId() {
+        return id;
+    }
 }
