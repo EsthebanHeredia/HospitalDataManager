@@ -3,17 +3,19 @@ import java.util.*;
 
 public class Main {
 
+    // Nombre del archivo CSV para almacenar todos los datos
     private static final String FILE_NAME = "Proyecto.csv";
-    private static final String DELIMITER = ",";
+    private static final String DELIMITER = ",";  // Delimitador para separar campos en el CSV
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        boolean running = true;
-        
-        while (running) {
-            mostrarMenu();
-            String choice = scanner.nextLine();
+        Scanner scanner = new Scanner(System.in);  // Para leer la entrada del usuario
+        boolean running = true;  // Controla el bucle del menú
 
+        while (running) {
+            mostrarMenu();  // Muestra el menú de opciones
+            String choice = scanner.nextLine();  // Lee la opción seleccionada por el usuario
+
+            // Ejecuta la acción correspondiente según la opción elegida
             switch (choice) {
                 case "1":
                     buscarPaciente();
@@ -41,15 +43,16 @@ public class Main {
                     break;
                 case "9":
                     System.out.println("Saliendo...");
-                    running = false;  // Termina el bucle y sale del programa
+                    running = false;  // Termina el bucle y cierra el programa
                     break;
-
                 default:
                     System.out.println("Opción no válida. Intenta de nuevo.");
             }
         }
+        scanner.close();  // Cierra el scanner al finalizar
     }
 
+    // Muestra el menú de opciones al usuario
     private static void mostrarMenu() {
         System.out.println("Menú:");
         System.out.println("1. Buscar paciente");
@@ -63,20 +66,22 @@ public class Main {
         System.out.println("9. Salir");
     }
 
+    // Busca un paciente por su ID e imprime su información
     private static void buscarPaciente() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Ingrese ID del paciente: ");
         String id = scanner.nextLine();
-        List<Paciente> pacientes = leerPacientes();
+        List<Paciente> pacientes = leerPacientes();  // Lee todos los pacientes desde el archivo
         for (Paciente paciente : pacientes) {
             if (paciente.getId().equals(id)) {
-                System.out.println(paciente);
+                System.out.println(paciente);  // Muestra el paciente encontrado
                 return;
             }
         }
         System.out.println("Paciente no encontrado.");
     }
 
+    // Agrega un nuevo paciente al archivo CSV
     private static void agregarPaciente() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Ingrese ID del paciente: ");
@@ -89,27 +94,32 @@ public class Main {
         String clinicaId = scanner.nextLine();
 
         Paciente paciente = new Paciente(id, nombre, doctorId, clinicaId);
-        escribirPaciente(paciente);
+        escribirPaciente(paciente);  // Añade el paciente al archivo CSV
         System.out.println("Paciente agregado con éxito.");
     }
 
+    // Elimina un paciente del archivo CSV por su ID
     private static void eliminarPaciente() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Ingrese ID del paciente a eliminar: ");
         String id = scanner.nextLine();
-        List<Paciente> pacientes = leerPacientes();
-        boolean eliminado = false;
+        List<Paciente> pacientes = leerPacientes();  // Lee la lista de pacientes
+        boolean eliminado = false;  // Marca si se ha eliminado un paciente
+
+        // Escribe en el archivo solo los pacientes que no se van a eliminar
         try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME))) {
             for (Paciente paciente : pacientes) {
                 if (!paciente.getId().equals(id)) {
-                    writer.println(paciente);
+                    writer.println(paciente);  // Guarda los pacientes restantes
                 } else {
-                    eliminado = true;
+                    eliminado = true;  // Marca como eliminado
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        // Mensaje de éxito o error
         if (eliminado) {
             System.out.println("Paciente eliminado con éxito.");
         } else {
@@ -117,20 +127,22 @@ public class Main {
         }
     }
 
+    // Busca un doctor por su ID e imprime su información
     private static void buscarDoctor() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Ingrese ID del doctor: ");
         String id = scanner.nextLine();
-        List<Doctor> doctores = leerDoctores();
+        List<Doctor> doctores = leerDoctores();  // Lee todos los doctores desde el archivo
         for (Doctor doctor : doctores) {
             if (doctor.getId().equals(id)) {
-                System.out.println(doctor);
+                System.out.println(doctor);  // Muestra el doctor encontrado
                 return;
             }
         }
         System.out.println("Doctor no encontrado.");
     }
 
+    // Agrega un nuevo doctor al archivo CSV
     private static void agregarDoctor() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Ingrese ID del doctor: ");
@@ -141,27 +153,32 @@ public class Main {
         String clinicaId = scanner.nextLine();
 
         Doctor doctor = new Doctor(id, nombre, clinicaId);
-        escribirDoctor(doctor);
+        escribirDoctor(doctor);  // Añade el doctor al archivo CSV
         System.out.println("Doctor agregado con éxito.");
     }
 
+    // Elimina un doctor del archivo CSV por su ID
     private static void eliminarDoctor() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Ingrese ID del doctor a eliminar: ");
         String id = scanner.nextLine();
-        List<Doctor> doctores = leerDoctores();
-        boolean eliminado = false;
+        List<Doctor> doctores = leerDoctores();  // Lee la lista de doctores
+        boolean eliminado = false;  // Marca si se ha eliminado un doctor
+
+        // Escribe en el archivo solo los doctores que no se van a eliminar
         try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME))) {
             for (Doctor doctor : doctores) {
                 if (!doctor.getId().equals(id)) {
-                    writer.println(doctor);
+                    writer.println(doctor);  // Guarda los doctores restantes
                 } else {
-                    eliminado = true;
+                    eliminado = true;  // Marca como eliminado
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        // Mensaje de éxito o error
         if (eliminado) {
             System.out.println("Doctor eliminado con éxito.");
         } else {
@@ -169,17 +186,19 @@ public class Main {
         }
     }
 
+    // Muestra información sobre todas las clínicas
     private static void infoClinica() {
-        List<Clinica> clinicas = leerClinicas();
+        List<Clinica> clinicas = leerClinicas();  // Lee la lista de clínicas
         if (clinicas.isEmpty()) {
             System.out.println("No hay clínicas registradas.");
         } else {
             for (Clinica clinica : clinicas) {
-                System.out.println(clinica);
+                System.out.println(clinica);  // Muestra cada clínica
             }
         }
     }
 
+    // Agrega una nueva clínica al archivo CSV
     private static void agregarClinica() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Ingrese ID de la clínica: ");
@@ -188,10 +207,11 @@ public class Main {
         String nombre = scanner.nextLine();
 
         Clinica clinica = new Clinica(id, nombre);
-        escribirClinica(clinica);
+        escribirClinica(clinica);  // Añade la clínica al archivo CSV
         System.out.println("Clínica agregada con éxito.");
     }
 
+    // Lee y retorna una lista de pacientes desde el archivo CSV
     private static List<Paciente> leerPacientes() {
         List<Paciente> pacientes = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
@@ -208,6 +228,7 @@ public class Main {
         return pacientes;
     }
 
+    // Lee y retorna una lista de doctores desde el archivo CSV
     private static List<Doctor> leerDoctores() {
         List<Doctor> doctores = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
@@ -224,10 +245,12 @@ public class Main {
         return doctores;
     }
 
+    // Lee y retorna una lista de clínicas desde el archivo CSV
     private static List<Clinica> leerClinicas() {
         List<Clinica> clinicas = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
             String line;
+                        // Lee y retorna una lista de clínicas desde el archivo CSV
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(DELIMITER);
                 if (parts.length == 2) { 
@@ -240,25 +263,28 @@ public class Main {
         return clinicas;
     }
 
+    // Añade un paciente al archivo CSV
     private static void escribirPaciente(Paciente paciente) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME, true))) {
-            writer.println(paciente);
+            writer.println(paciente);  // Escribe el paciente en el archivo
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    // Añade un doctor al archivo CSV
     private static void escribirDoctor(Doctor doctor) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME, true))) {
-            writer.println(doctor);
+            writer.println(doctor);  // Escribe el doctor en el archivo
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    // Añade una clínica al archivo CSV
     private static void escribirClinica(Clinica clinica) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME, true))) {
-            writer.println(clinica);
+            writer.println(clinica);  // Escribe la clínica en el archivo
         } catch (IOException e) {
             e.printStackTrace();
         }
