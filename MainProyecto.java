@@ -80,3 +80,17 @@ public class Main {
         }
         System.out.println("Paciente no encontrado.");
 
+        // Busca un paciente por su ID e imprime su información
+    private static void buscarPaciente() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Ingrese ID del paciente: ");
+        String id = scanner.nextLine();
+        List<Paciente> pacientes = leerPacientes();  // Lee todos los pacientes desde el archivo
+        for (Paciente paciente : pacientes) {
+            if (paciente.getId().equals(id)) {
+                System.out.println(paciente);  // Muestra el paciente encontrado
+                return;
+            }
+        }
+        System.out.println("Paciente no encontrado.");
+
