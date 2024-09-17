@@ -5,7 +5,7 @@ public class Clinica implements Serializable {
     private String nombre;
     private String direccion;
 
-    public Clinica(String nombre, String direccion) {
+    public Clinica(String nombre, String direccion) { 
         this.nombre = nombre;
         this.direccion = direccion;
     }
