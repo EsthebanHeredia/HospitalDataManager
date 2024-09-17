@@ -51,3 +51,17 @@ public class Main {
         }
         scanner.close();  // Cierra el scanner al finalizar
     }
+
+    // Muestra el menú de opciones al usuario
+    private static void mostrarMenu() {
+        System.out.println("Menú:");
+        System.out.println("1. Buscar paciente");
+        System.out.println("2. Agregar paciente");
+        System.out.println("3. Eliminar paciente");
+        System.out.println("4. Buscar doctor");
+        System.out.println("5. Agregar doctor");
+        System.out.println("6. Eliminar doctor");
+        System.out.println("7. Información de la clínica");
+        System.out.println("8. Agregar clínica");
+        System.out.println("9. Salir");
+    }
