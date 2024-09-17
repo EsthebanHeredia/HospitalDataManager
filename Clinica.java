@@ -9,7 +9,7 @@ public class Clinica implements Serializable {
         this.nombre = nombre;
         this.direccion = direccion;
     }
-
+ 
     // Métodos getters y setters
     public String getNombre() {  
         return nombre;
