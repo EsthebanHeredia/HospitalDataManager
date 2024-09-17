@@ -26,3 +26,10 @@ public class Doctor implements Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre; 
     }
+    public String getClinica() { 
+        return clinica; 
+    }
+
+    public void setClinica(String clinica) {
+        this.clinica = clinica;
+    }
