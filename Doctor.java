@@ -33,3 +33,8 @@ public class Doctor implements Serializable {
     public void setClinica(String clinica) {
         this.clinica = clinica;
     }
+     @Override
+    public String toString() {
+        return id + "," + nombre + "," + clinica; // Commit
+    }
+}
