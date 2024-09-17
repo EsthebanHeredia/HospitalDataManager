@@ -28,10 +28,10 @@ Para usar la applicacion corra MainProyecto.java, esto le abrira un Menu como el
 Use los numeros como estan indicados para ingresar a tal instancia.
 
 ## Files
-Clinica.java
-Doctor.java
-Paciente.java
-MainProyecto.java
+* Clinica.java
+* Doctor.java
+* Paciente.java
+* MainProyecto.java
 
 
 ## Contributing
