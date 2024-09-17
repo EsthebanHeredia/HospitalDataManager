@@ -5,3 +5,9 @@ public class Doctor implements Serializable {
     private String id;
     private String nombre;
     private String clinica;
+    
+    public Doctor(String id, String nombre, String clinica) {
+        this.id = id;
+        this.nombre = nombre;
+        this.clinica = clinica;
+    }
