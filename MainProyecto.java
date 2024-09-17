@@ -94,3 +94,27 @@ public class Main {
         }
         System.out.println("Paciente no encontrado.");
 
+        //Eliminar Paciente por su ID e imprime el resultado.
+    private static void eliminarPaciente() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Ingrese ID del paciente a eliminar: ");
+        String id = scanner.nextLine();
+        List<Paciente> pacientes = leerPacientes();
+        boolean eliminado = false; 
+        try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME))) {
+            for (Paciente paciente : pacientes) {
+                if (!paciente.getId().equals(id)) {
+                    writer.println(paciente);
+                } else {
+                    eliminado = true; 
+                } 
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (eliminado) {
+            System.out.println("Paciente eliminado con éxito.");
+        } else {
+            System.out.println("Paciente no encontrado."); 
+        }
+    }
