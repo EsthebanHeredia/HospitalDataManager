@@ -11,7 +11,7 @@ public class Clinica implements Serializable {
     }
 
     // Métodos getters y setters
-    public String getNombre() { 
+    public String getNombre() {  
         return nombre;
     }
 
