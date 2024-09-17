@@ -36,9 +36,9 @@ Use los numeros como estan indicados para ingresar a tal instancia.
 
 ## Contributing
 Hecho por:
-Adrian Arimany
-Ariel Aceytuno
-Diego Gonzalez
-Estheban Heredia
-Victor Boche
+* Adrian Arimany
+* Ariel Aceytuno
+* Diego Gonzalez
+* Estheban Heredia
+* Victor Boche
 
