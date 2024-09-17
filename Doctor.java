@@ -11,3 +11,9 @@ public class Doctor implements Serializable {
         this.nombre = nombre;
         this.clinica = clinica;
     }
+
+     // Métodos getters y setters
+    public String getId() {
+        return id;
+    }
+    
