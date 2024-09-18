@@ -285,5 +285,18 @@ public class Main {
         }
         return clinicas;
     }
+
+        /**
+     * Escribe un nuevo paciente al archivo CSV.
+     *
+     * @param paciente Objeto Paciente a escribir en el archivo.
+     */
+    private static void escribirPaciente(Paciente paciente) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME, true))) {
+            writer.println(paciente);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
