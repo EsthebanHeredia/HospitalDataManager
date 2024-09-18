@@ -264,5 +264,26 @@ public class Main {
         }
         return doctores;
     }
+
+    /**
+     * Lee y retorna una lista de clínicas desde el archivo CSV.
+     *
+     * @return Lista de objetos Clinica leída desde el archivo.
+     */
+    private static List<Clinica> leerClinicas() {
+        List<Clinica> clinicas = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(DELIMITER);
+                if (parts.length == 2) {
+                    clinicas.add(new Clinica(parts[0], parts[1]));
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return clinicas;
+    }
 }
 
