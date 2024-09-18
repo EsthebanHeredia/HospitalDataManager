@@ -201,3 +201,18 @@ public class Main {
             }
         }
     }
+
+    /**
+     * Agrega una nueva clínica al archivo CSV.
+     */
+    private static void agregarClinica() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Ingrese ID de la clínica: ");
+        String id = scanner.nextLine();
+        System.out.print("Ingrese nombre de la clínica: ");
+        String nombre = scanner.nextLine();
+
+        Clinica clinica = new Clinica(id, nombre);
+        escribirClinica(clinica);
+        System.out.println("Clínica agregada con éxito.");
+    }
