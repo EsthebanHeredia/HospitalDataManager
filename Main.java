@@ -298,5 +298,18 @@ public class Main {
             e.printStackTrace();
         }
     }
+
+        /**
+     * Escribe un nuevo doctor al archivo CSV.
+     *
+     * @param doctor Objeto Doctor a escribir en el archivo.
+     */
+    private static void escribirDoctor(Doctor doctor) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME, true))) {
+            writer.println(doctor);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
