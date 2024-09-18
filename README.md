@@ -1,4 +1,4 @@
-# Projecto: HospitalDataManager
+# Project: HospitalDataManager
 
 Es un sistema de gestion para manejar una base de datos de un hospital. El sistema guarda los datos de Pacientes, Doctores, y Clinicas.
 
@@ -8,13 +8,13 @@ Es un sistema de gestion para manejar una base de datos de un hospital. El siste
 
 ## Building
 1. Clone the repository: `git clone https://github.com/EsthebanHeredia/HospitalDataManager.git`
-2. Build the project: `mvn clean install`
 
 ## Running
-1. Run the application: `java -jar target/MainProyecto.jar`
+1. Compile the app  ` javac Main.java `
+2. Run it `java Main `
 
 ## Usage
-Para usar la applicacion corra MainProyecto.java, esto le abrira un Menu como el siguente:
+Para usar la applicacion corra Main.java, esto le abrira un Menu como el siguente:
 1. Buscar Paciente
 2. Agregar Paciente
 3. Eliminar Paciente
@@ -31,7 +31,7 @@ Use los numeros como estan indicados para ingresar a tal instancia.
 * Clinica.java
 * Doctor.java
 * Paciente.java
-* MainProyecto.java
+* Main.java
 
 
 ## Contributing
