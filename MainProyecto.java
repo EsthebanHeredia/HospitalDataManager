@@ -118,3 +118,18 @@ public class Main {
             System.out.println("Paciente no encontrado."); 
         }
     }
+
+     private static void buscarDoctor() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Ingrese ID del doctor: ");
+        String id = scanner.nextLine();
+        List<Doctor> doctores = leerDoctores();  // Lee todos los doctores desde el archivo
+        for (Doctor doctor : doctores) {
+            if (doctor.getId().equals(id)) {
+                System.out.println(doctor);  // Muestra el doctor encontrado
+                return;
+            }
+        }
+        System.out.println("Doctor no encontrado.");
+    }
+        
