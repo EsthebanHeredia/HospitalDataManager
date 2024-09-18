@@ -76,4 +76,13 @@ public class Paciente implements Serializable {
     public void setDoctor(String doctor) {
         this.doctor = doctor;
     }
+
+    /**
+    *Obtiene el nombre de la clinica en el que el paciente es atendido.
+    *
+    *@return El nombre de la clinica.
+    */
+    public String getClinica() {
+        return clinica;
+    }
 }
