@@ -85,4 +85,14 @@ public class Paciente implements Serializable {
     public String getClinica() {
         return clinica;
     }
+
+    /**
+    *Establece el nombre de la clinica.
+    *
+    *@param El nombre de la clinica.
+    */
+    public void setClinica(String clinica) {
+        this.clinica = clinica;
+    }
+    
 }
