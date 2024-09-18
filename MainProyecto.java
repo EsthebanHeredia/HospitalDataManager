@@ -138,6 +138,11 @@ public class Main {
         System.out.println("Doctor no encontrado.");
     }
 
+    /**
+     * Agrega un nuevo doctor al sistema.
+     * Este método solicita al usuario la información necesaria para crear un nuevo doctor,
+     * crea un objeto Doctor con esa información, y lo guarda en el sistema.
+     */
     private static void agregarDoctor() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Ingrese ID del doctor: ");
