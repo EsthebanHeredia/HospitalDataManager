@@ -67,4 +67,13 @@ public class Paciente implements Serializable {
     public String getDoctor() {
         return doctor;
     }
+
+    /**
+    *Establece el nombre del doctor 
+    *
+    * @param El nombre del doctor. 
+    */
+    public void setDoctor(String doctor) {
+        this.doctor = doctor;
+    }
 }
