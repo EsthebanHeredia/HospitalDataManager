@@ -94,5 +94,14 @@ public class Paciente implements Serializable {
     public void setClinica(String clinica) {
         this.clinica = clinica;
     }
-    
+
+    /**
+    * Meodo para sobreescribir lo deseado.
+    *
+    *@return Los 4 datos, id, nombre, doctor y clinica. 
+    */
+    @Override
+    public String toString() {
+        return id + "," + nombre + "," + doctor + "," + clinica;
+    }
 }
