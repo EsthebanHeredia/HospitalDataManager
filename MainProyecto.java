@@ -242,5 +242,25 @@ public class Main {
         }
         return pacientes;
     }
+
+    /**
+     * Lee y retorna una lista de doctores desde el archivo CSV.
+     *
+     * @return Lista de objetos Doctor leída desde el archivo.
+     */
+    private static List<Doctor> leerDoctores() {
+        List<Doctor> doctores = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(DELIMITER);
+                if (parts.length == 3) {
+                    doctores.add(new Doctor(parts[0], parts[1], parts[2]));
+                }
+            }
+        } 
+        
+        return doctores;
+    }
 }
 
