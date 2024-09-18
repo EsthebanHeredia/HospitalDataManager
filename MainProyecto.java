@@ -94,7 +94,12 @@ public class Main {
         }
         System.out.println("Paciente no encontrado.");
 
-        //Eliminar Paciente por su ID e imprime el resultado.
+        /**
+         * Elimina un paciente del registro basado en su ID.
+         * Este método solicita al usuario el ID del paciente a eliminar,
+         * busca el paciente en el archivo, lo elimina si lo encuentra,
+         * y reescribe el archivo sin el paciente eliminado.
+         */
     private static void eliminarPaciente() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Ingrese ID del paciente a eliminar: ");
