@@ -156,7 +156,13 @@ public class Main {
         escribirDoctor(doctor);
         System.out.println("Doctor agregado con éxito."); 
     }
-    
+
+    /**
+     * Elimina un doctor del sistema basado en su ID.
+     * Este método solicita al usuario el ID del doctor a eliminar,
+     * busca el doctor en el archivo, lo elimina si lo encuentra,
+     * y reescribe el archivo sin el doctor eliminado.
+     */
     private static void eliminarDoctor() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Ingrese ID del doctor a eliminar: ");
