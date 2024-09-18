@@ -311,5 +311,18 @@ public class Main {
             e.printStackTrace();
         }
     }
+
+        /**
+     * Escribe una nueva clínica al archivo CSV.
+     *
+     * @param clinica Objeto Clinica a escribir en el archivo.
+     */
+    private static void escribirClinica(Clinica clinica) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME, true))) {
+            writer.println(clinica);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
