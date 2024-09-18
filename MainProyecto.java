@@ -186,7 +186,11 @@ public class Main {
             System.out.println("Doctor no encontrado."); 
         }
     }
-
+    /**
+     * Muestra la información de todas las clínicas registradas en el sistema.
+     * Si no hay clínicas registradas, se informa al usuario.
+     * Para cada clínica registrada, se imprime su información.
+     */
     private static void infoClinica() {
         List<Clinica> clinicas = leerClinicas();
         if (clinicas.isEmpty()) {
