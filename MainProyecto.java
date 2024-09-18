@@ -132,4 +132,18 @@ public class Main {
         }
         System.out.println("Doctor no encontrado.");
     }
-        
+
+    private static void agregarDoctor() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Ingrese ID del doctor: ");
+        String id = scanner.nextLine();
+        System.out.print("Ingrese nombre del doctor: ");
+        String nombre = scanner.nextLine();
+        System.out.print("Ingrese ID de la clínica: ");
+        String clinicaId = scanner.nextLine();
+
+        Doctor doctor = new Doctor(id, nombre, clinicaId);
+        escribirDoctor(doctor);
+        System.out.println("Doctor agregado con éxito."); 
+    }
+    
