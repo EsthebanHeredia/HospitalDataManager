@@ -1,21 +1,35 @@
 import java.io.*;
 import java.util.*;
 
+/**
+ * Clase principal para gestionar pacientes, doctores y clínicas
+ * a través de un menú interactivo.
+ */
 public class Main {
 
-    // Nombre del archivo CSV para almacenar todos los datos
+    /**
+     * Nombre del archivo CSV para almacenar todos los datos.
+     */
     private static final String FILE_NAME = "Proyecto.csv";
-    private static final String DELIMITER = ",";  // Delimitador para separar campos en el CSV
+    
+    /**
+     * Delimitador para separar campos en el CSV.
+     */
+    private static final String DELIMITER = ",";
 
+    /**
+     * Método principal que controla el flujo del programa y muestra un menú interactivo.
+     *
+     * @param args Argumentos de la línea de comandos (no se utilizan).
+     */
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);  // Para leer la entrada del usuario
-        boolean running = true;  // Controla el bucle del menú
+        Scanner scanner = new Scanner(System.in);
+        boolean running = true;
 
-    while (running) {
-            mostrarMenu();  // Muestra el menú de opciones
-            String choice = scanner.nextLine();  // Lee la opción seleccionada por el usuario
+        while (running) {
+            mostrarMenu();
+            String choice = scanner.nextLine();
 
-            // Ejecuta la acción correspondiente según la opción elegida
             switch (choice) {
                 case "1":
                     buscarPaciente();
@@ -43,16 +57,18 @@ public class Main {
                     break;
                 case "9":
                     System.out.println("Saliendo...");
-                    running = false;  // Termina el bucle y cierra el programa
+                    running = false;
                     break;
                 default:
                     System.out.println("Opción no válida. Intenta de nuevo.");
             }
         }
-        scanner.close();  // Cierra el scanner al finalizar
+        scanner.close();
     }
 
-    // Muestra el menú de opciones al usuario
+    /**
+     * Muestra el menú de opciones al usuario.
+     */
     private static void mostrarMenu() {
         System.out.println("Menú:");
         System.out.println("1. Buscar paciente");
@@ -66,22 +82,24 @@ public class Main {
         System.out.println("9. Salir");
     }
 
-    // Busca un paciente por su ID e imprime su información
+    /**
+     * Busca un paciente por su ID e imprime su información.
+     */
     private static void buscarPaciente() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Ingrese ID del paciente: ");
         String id = scanner.nextLine();
-        List<Paciente> pacientes = leerPacientes();  // Lee todos los pacientes desde el archivo
+        List<Paciente> pacientes = leerPacientes();
         for (Paciente paciente : pacientes) {
             if (paciente.getId().equals(id)) {
-                System.out.println(paciente);  // Muestra el paciente encontrado
+                System.out.println(paciente);
                 return;
             }
         }
-    }
         System.out.println("Paciente no encontrado.");
+    }
 
-        /**
+    /**
      * Agrega un nuevo paciente al archivo CSV.
      */
     private static void agregarPaciente() {
@@ -99,44 +117,47 @@ public class Main {
         escribirPaciente(paciente);
         System.out.println("Paciente agregado con éxito.");
     }
-        /**
-         * Elimina un paciente del registro basado en su ID.
-         * Este método solicita al usuario el ID del paciente a eliminar,
-         * busca el paciente en el archivo, lo elimina si lo encuentra,
-         * y reescribe el archivo sin el paciente eliminado.
-         */
+
+    /**
+     * Elimina un paciente del archivo CSV por su ID.
+     */
     private static void eliminarPaciente() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Ingrese ID del paciente a eliminar: ");
         String id = scanner.nextLine();
         List<Paciente> pacientes = leerPacientes();
-        boolean eliminado = false; 
+        boolean eliminado = false;
+
         try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME))) {
             for (Paciente paciente : pacientes) {
                 if (!paciente.getId().equals(id)) {
                     writer.println(paciente);
                 } else {
-                    eliminado = true; 
-                } 
+                    eliminado = true;
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         if (eliminado) {
             System.out.println("Paciente eliminado con éxito.");
         } else {
-            System.out.println("Paciente no encontrado."); 
+            System.out.println("Paciente no encontrado.");
         }
     }
 
-     private static void buscarDoctor() {
+    /**
+     * Busca un doctor por su ID e imprime su información.
+     */
+    private static void buscarDoctor() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Ingrese ID del doctor: ");
         String id = scanner.nextLine();
-        List<Doctor> doctores = leerDoctores();  // Lee todos los doctores desde el archivo
+        List<Doctor> doctores = leerDoctores();
         for (Doctor doctor : doctores) {
             if (doctor.getId().equals(id)) {
-                System.out.println(doctor);  // Muestra el doctor encontrado
+                System.out.println(doctor);
                 return;
             }
         }
@@ -144,9 +165,7 @@ public class Main {
     }
 
     /**
-     * Agrega un nuevo doctor al sistema.
-     * Este método solicita al usuario la información necesaria para crear un nuevo doctor,
-     * crea un objeto Doctor con esa información, y lo guarda en el sistema.
+     * Agrega un nuevo doctor al archivo CSV.
      */
     private static void agregarDoctor() {
         Scanner scanner = new Scanner(System.in);
@@ -159,21 +178,19 @@ public class Main {
 
         Doctor doctor = new Doctor(id, nombre, clinicaId);
         escribirDoctor(doctor);
-        System.out.println("Doctor agregado con éxito."); 
+        System.out.println("Doctor agregado con éxito.");
     }
 
     /**
-     * Elimina un doctor del sistema basado en su ID.
-     * Este método solicita al usuario el ID del doctor a eliminar,
-     * busca el doctor en el archivo, lo elimina si lo encuentra,
-     * y reescribe el archivo sin el doctor eliminado.
+     * Elimina un doctor del archivo CSV por su ID.
      */
     private static void eliminarDoctor() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Ingrese ID del doctor a eliminar: ");
         String id = scanner.nextLine();
-        List<Doctor> doctores = leerDoctores(); 
-        boolean eliminado = false; 
+        List<Doctor> doctores = leerDoctores();
+        boolean eliminado = false;
+
         try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME))) {
             for (Doctor doctor : doctores) {
                 if (!doctor.getId().equals(id)) {
@@ -185,16 +202,16 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         if (eliminado) {
             System.out.println("Doctor eliminado con éxito.");
         } else {
-            System.out.println("Doctor no encontrado."); 
+            System.out.println("Doctor no encontrado.");
         }
     }
+
     /**
-     * Muestra la información de todas las clínicas registradas en el sistema.
-     * Si no hay clínicas registradas, se informa al usuario.
-     * Para cada clínica registrada, se imprime su información.
+     * Muestra información sobre todas las clínicas.
      */
     private static void infoClinica() {
         List<Clinica> clinicas = leerClinicas();
@@ -202,7 +219,7 @@ public class Main {
             System.out.println("No hay clínicas registradas.");
         } else {
             for (Clinica clinica : clinicas) {
-                System.out.println(clinica); 
+                System.out.println(clinica);
             }
         }
     }
@@ -221,6 +238,7 @@ public class Main {
         escribirClinica(clinica);
         System.out.println("Clínica agregada con éxito.");
     }
+
     /**
      * Lee y retorna una lista de pacientes desde el archivo CSV.
      *
@@ -236,8 +254,7 @@ public class Main {
                     pacientes.add(new Paciente(parts[0], parts[1], parts[2], parts[3]));
                 }
             }
-        } 
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return pacientes;
@@ -258,8 +275,7 @@ public class Main {
                     doctores.add(new Doctor(parts[0], parts[1], parts[2]));
                 }
             }
-        } 
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return doctores;
@@ -286,7 +302,7 @@ public class Main {
         return clinicas;
     }
 
-        /**
+    /**
      * Escribe un nuevo paciente al archivo CSV.
      *
      * @param paciente Objeto Paciente a escribir en el archivo.
@@ -299,7 +315,7 @@ public class Main {
         }
     }
 
-        /**
+    /**
      * Escribe un nuevo doctor al archivo CSV.
      *
      * @param doctor Objeto Doctor a escribir en el archivo.
@@ -312,7 +328,7 @@ public class Main {
         }
     }
 
-        /**
+    /**
      * Escribe una nueva clínica al archivo CSV.
      *
      * @param clinica Objeto Clinica a escribir en el archivo.
@@ -325,4 +341,3 @@ public class Main {
         }
     }
 }
-
