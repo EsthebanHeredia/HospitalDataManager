@@ -220,3 +220,23 @@ public class Main {
         escribirClinica(clinica);
         System.out.println("Clínica agregada con éxito.");
     }
+    /**
+     * Lee y retorna una lista de pacientes desde el archivo CSV.
+     *
+     * @return Lista de objetos Paciente leída desde el archivo.
+     */
+    private static List<Paciente> leerPacientes() {
+        List<Paciente> pacientes = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(DELIMITER);
+                if (parts.length == 4) {
+                    pacientes.add(new Paciente(parts[0], parts[1], parts[2], parts[3]));
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return pacientes;
+    }
