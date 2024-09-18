@@ -147,3 +147,26 @@ public class Main {
         System.out.println("Doctor agregado con éxito."); 
     }
     
+    private static void eliminarDoctor() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Ingrese ID del doctor a eliminar: ");
+        String id = scanner.nextLine();
+        List<Doctor> doctores = leerDoctores(); 
+        boolean eliminado = false; 
+        try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME))) {
+            for (Doctor doctor : doctores) {
+                if (!doctor.getId().equals(id)) {
+                    writer.println(doctor);
+                } else {
+                    eliminado = true;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (eliminado) {
+            System.out.println("Doctor eliminado con éxito.");
+        } else {
+            System.out.println("Doctor no encontrado."); 
+        }
+    }
