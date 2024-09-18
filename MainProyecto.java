@@ -170,3 +170,14 @@ public class Main {
             System.out.println("Doctor no encontrado."); 
         }
     }
+
+    private static void infoClinica() {
+        List<Clinica> clinicas = leerClinicas();
+        if (clinicas.isEmpty()) {
+            System.out.println("No hay clínicas registradas.");
+        } else {
+            for (Clinica clinica : clinicas) {
+                System.out.println(clinica); 
+            }
+        }
+    }
