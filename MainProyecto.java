@@ -80,20 +80,24 @@ public class Main {
         }
         System.out.println("Paciente no encontrado.");
 
-        // Busca un paciente por su ID e imprime su información
-    private static void buscarPaciente() {
+        /**
+     * Agrega un nuevo paciente al archivo CSV.
+     */
+    private static void agregarPaciente() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Ingrese ID del paciente: ");
         String id = scanner.nextLine();
-        List<Paciente> pacientes = leerPacientes();  // Lee todos los pacientes desde el archivo
-        for (Paciente paciente : pacientes) {
-            if (paciente.getId().equals(id)) {
-                System.out.println(paciente);  // Muestra el paciente encontrado
-                return;
-            }
-        }
-        System.out.println("Paciente no encontrado.");
+        System.out.print("Ingrese nombre del paciente: ");
+        String nombre = scanner.nextLine();
+        System.out.print("Ingrese ID del doctor a cargo: ");
+        String doctorId = scanner.nextLine();
+        System.out.print("Ingrese ID de la clínica: ");
+        String clinicaId = scanner.nextLine();
 
+        Paciente paciente = new Paciente(id, nombre, doctorId, clinicaId);
+        escribirPaciente(paciente);
+        System.out.println("Paciente agregado con éxito.");
+    }
         /**
          * Elimina un paciente del registro basado en su ID.
          * Este método solicita al usuario el ID del paciente a eliminar,
