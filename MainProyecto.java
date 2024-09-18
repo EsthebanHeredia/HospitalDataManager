@@ -78,6 +78,7 @@ public class Main {
                 return;
             }
         }
+    }
         System.out.println("Paciente no encontrado.");
 
         /**
@@ -235,8 +236,11 @@ public class Main {
                     pacientes.add(new Paciente(parts[0], parts[1], parts[2], parts[3]));
                 }
             }
-        } catch (IOException e) {
+        } 
+        catch (IOException e) {
             e.printStackTrace();
         }
         return pacientes;
     }
+}
+
