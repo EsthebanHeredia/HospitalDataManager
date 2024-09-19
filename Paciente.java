@@ -29,7 +29,7 @@ public class Paciente implements Serializable {
      * @return El ID del paciente.
      */
     public String getId() {
-        return id;
+        return this.id;
     }
 
     /**
@@ -47,7 +47,7 @@ public class Paciente implements Serializable {
      * @return El nombre del paciente.
      */
     public String getNombre() {
-        return nombre;
+        return this.nombre;
     }
 
     /**
@@ -65,7 +65,7 @@ public class Paciente implements Serializable {
      * @return El nombre del doctor.
      */
     public String getDoctor() {
-        return doctor;
+        return this.doctor;
     }
 
     /**
@@ -83,7 +83,7 @@ public class Paciente implements Serializable {
     *@return El nombre de la clinica.
     */
     public String getClinica() {
-        return clinica;
+        return this.clinica;
     }
 
     /**
