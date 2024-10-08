@@ -29,7 +29,7 @@ public class Doctor implements Serializable {
      * @return the ID of the doctor
      */
     public String getId() {
-        return id;
+        return this.id;
     }
 
     /**
@@ -47,7 +47,7 @@ public class Doctor implements Serializable {
      * @return the name of the doctor
      */
     public String getNombre() {
-        return nombre;
+        return this.nombre;
     }
 
     /**
@@ -65,7 +65,7 @@ public class Doctor implements Serializable {
      * @return the clinic of the doctor
      */
     public String getClinica() {
-        return clinica;
+        return this.clinica;
     }
 
     /**
