@@ -28,7 +28,7 @@ public class Clinica implements Serializable {
      * @return El nombre de la clínica.
      */
     public String getNombre() {  
-        return nombre;
+        return this.nombre;
     }
 
     /**
@@ -46,7 +46,7 @@ public class Clinica implements Serializable {
      * @return La dirección de la clínica.
      */
     public String getDireccion() {
-        return direccion;
+        return this.direccion;
     }
 
     /**
