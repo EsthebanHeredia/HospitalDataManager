@@ -2,6 +2,19 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Esta clase existe solamente para manejar los csv files del sistema, con sus methodos repectivos para Doctor, Clinica, Paciente.
+ *
+ * Todo: 
+ * 1. Javadoc para los meteodos.
+ *
+ * 2. (optional) hacer un csv para enfermedades o historial medico, esto se haria para tener mejor control de las enfemedades que trabajan en el hospital.
+ *
+ * 3. (optional) guardad las claves de los pacientes o doctores en un csv para tener mayor seguridad en el programa.
+ *
+ */
+
+
 public class DataHandler {
 
     private static final String DELIMITER = ",";
