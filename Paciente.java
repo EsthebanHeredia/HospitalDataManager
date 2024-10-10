@@ -1,5 +1,13 @@
 import java.io.Serializable;
-
+/**
+ * Esta clase maneja existe solamente para manejar a los pacientes del hospotal.
+ * 
+ * Todo: 
+ * 
+ * 1. Necesita mas attributos, como historial medico, enfemedades, cita medica, etc.
+ * 
+ * 
+ */
 public class Paciente implements Serializable {
     private static final long serialVersionUID = 1L;
     private String id;
