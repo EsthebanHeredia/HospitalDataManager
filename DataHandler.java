@@ -9,4 +9,20 @@ public class DataHandler {
     private static final String DOCTOR_FILE = "doctores.csv";
     private static final String PACIENTE_FILE = "pacientes.csv";
 
+        private List<String[]> readFromFile(String fileName) {
+            List<String[]> records = new ArrayList<>();
+            try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    String[] parts = line.split(DELIMITER);
+                    records.add(parts);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return records;
+        }
+
+        
+
 }
