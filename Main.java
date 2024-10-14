@@ -84,4 +84,44 @@ public class Main {
             }
         }
     }
+
+    private void showMenuDoctor() {
+        boolean running = true;
+        while (running) {
+            System.out.println("1. Agregar Doctor");
+            System.out.println("2. Buscar Doctor");
+            System.out.println("3. Eliminar Doctor");
+            System.out.println("4. Ver Historial Médico de Paciente");
+            System.out.println("5. Volver");
+            System.out.print("Seleccione una opción: ");
+
+            try {
+                int option = scanner.nextInt();
+                scanner.nextLine(); // Consume newline
+
+                switch (option) {
+                    case 1:
+                        agregarDoctor();
+                        break;
+                    case 2:
+                        buscarDoctor();
+                        break;
+                    case 3:
+                        eliminarDoctor();
+                        break;
+                    case 4:
+                        verHistorialMedico();
+                        break;
+                    case 5:
+                        running = false;
+                        break;
+                    default:
+                        System.out.println("Opción no válida.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Error: Debe ingresar un número válido.");
+                scanner.nextLine(); // Limpiar el buffer de entrada
+            }
+        }
+    }
 }
