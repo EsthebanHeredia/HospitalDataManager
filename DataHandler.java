@@ -50,5 +50,19 @@ public class DataHandler {
         }
     }
 
+    public List<Paciente> readPacientes() {
+        List<Paciente> pacientes = new ArrayList<>();
+        for (String[] record : readFromFile(PACIENTE_FILE)) {
+            if (record.length == 7) {
+                Paciente paciente = new Paciente(record[0], record[1], record[2], record[3]);
+                paciente.agregarHistorialMedico(record[4]);
+                paciente.agregarEnfermedad(record[5]);
+                paciente.agregarCitaMedica(record[6]);
+                pacientes.add(paciente);
+            }
+        }
+        return pacientes;
+    }
+
 
 }
