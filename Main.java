@@ -310,4 +310,17 @@ public class Main {
             System.out.println(clinica);
         }
     }
+
+        private void agregarClinica() {
+        System.out.print("Ingrese ID de la clínica: ");
+        String id = scanner.nextLine();
+        System.out.print("Ingrese nombre de la clínica: ");
+        String nombre = scanner.nextLine();
+        System.out.print("Ingrese dirección de la clínica: ");
+        String direccion = scanner.nextLine();
+
+        Clinica clinica = new Clinica(id, nombre, direccion);
+        data.writeClinica(clinica);
+        System.out.println("Clínica agregada con éxito.");
+    }
 }
