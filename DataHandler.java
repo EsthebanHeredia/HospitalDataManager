@@ -94,5 +94,13 @@ public class DataHandler {
         return doctores;
     }
 
+        public void writeDoctor(Doctor doctor) {
+        if (!idExists(DOCTOR_FILE, doctor.getId())) {
+            writeToFile(DOCTOR_FILE, doctor.toString());
+        } else {
+            System.out.println("ID de doctor ya existe.");
+        }
+    }
+
 
 }
