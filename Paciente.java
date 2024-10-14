@@ -1,4 +1,6 @@
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Paciente implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -6,6 +8,9 @@ public class Paciente implements Serializable {
     private String nombre;
     private String doctor;
     private String clinica;
+    private List<String> historialMedico;
+    private List<String> enfermedades;
+    private List<String> citasMedicas;
 
     /**
      * Constructor de la clase Paciente.
@@ -21,6 +26,9 @@ public class Paciente implements Serializable {
         this.nombre = nombre;
         this.doctor = doctor;
         this.clinica = clinica;
+        this.historialMedico = new ArrayList<>();
+        this.enfermedades = new ArrayList<>();
+        this.citasMedicas = new ArrayList<>();
     }
 
     /**
@@ -93,6 +101,18 @@ public class Paciente implements Serializable {
     */
     public void setClinica(String clinica) {
         this.clinica = clinica;
+    }
+
+    public List<String> getHistorialMedico() {
+        return historialMedico;
+    }
+
+    public void agregarHistorialMedico(String historial) {
+        this.historialMedico.add(historial);
+    }
+
+    public List<String> getEnfermedades() {
+        return enfermedades;
     }
 
     /**
