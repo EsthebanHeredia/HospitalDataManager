@@ -263,4 +263,20 @@ public class Main {
             System.out.println("Error al eliminar el doctor.");
         }
     }
+
+        private void verHistorialMedico() {
+        System.out.print("Ingrese ID del doctor: ");
+        String doctorId = scanner.nextLine();
+        List<Doctor> doctores = data.readDoctores();
+        Doctor doctor = null;
+        for (Doctor doc : doctores) {
+            if (doc.getId().equals(doctorId)) {
+                doctor = doc;
+                break;
+            }
+        }
+        if (doctor == null) {
+            System.out.println("Doctor no encontrado.");
+            return;
+        }
 }
