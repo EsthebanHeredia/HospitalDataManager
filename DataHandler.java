@@ -64,5 +64,13 @@ public class DataHandler {
         return pacientes;
     }
 
+        public void writePaciente(Paciente paciente) {
+        if (!idExists(PACIENTE_FILE, paciente.getId())) {
+            writeToFile(PACIENTE_FILE, paciente.toString());
+        } else {
+            System.out.println("ID de paciente ya existe.");
+        }
+    }
+
 
 }
