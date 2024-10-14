@@ -297,4 +297,17 @@ public class Main {
 
         doctor.verHistorialMedico(paciente);
     }
+
+        private void infoClinica() {
+        List<Clinica> clinicas = data.readClinicas();
+        if (clinicas.isEmpty()) {
+            System.out.println("No hay clínicas registradas.");
+            return;
+        }
+
+        System.out.println("Información de Clínicas:");
+        for (Clinica clinica : clinicas) {
+            System.out.println(clinica);
+        }
+    }
 }
