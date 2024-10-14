@@ -1,5 +1,5 @@
 import java.io.Serializable;
-import java.util.list;
+import java.util.List;
 /**
  * The Doctor class represents a doctor with an ID, name, and clinic.
  * This class implements Serializable to allow its instances to be serialized.

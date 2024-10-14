@@ -19,7 +19,7 @@ public class Clinica implements Serializable {
      * @param nombre El nombre de la clínica.
      * @param direccion La dirección de la clínica.
      */
-    public Clinica(String nombre, String direccion) { 
+    public Clinica(String id, String nombre, String direccion) { 
         this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;
