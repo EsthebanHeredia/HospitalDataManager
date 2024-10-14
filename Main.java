@@ -156,4 +156,17 @@ public class Main {
             }
         }
     }
+        private boolean buscarPaciente() {
+        System.out.print("Ingrese ID del paciente: ");
+        String id = scanner.nextLine();
+        List<Paciente> pacientes = data.readPacientes();
+        for (Paciente paciente : pacientes) {
+            if (paciente.getId().equals(id)) {
+                System.out.println("Paciente encontrado: " + paciente);
+                return true;
+            }
+        }
+        System.out.println("Paciente no encontrado.");
+        return false;
+    }
 }
