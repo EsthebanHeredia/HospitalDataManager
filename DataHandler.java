@@ -102,5 +102,17 @@ public class DataHandler {
         }
     }
 
+        public Boolean writeDoctores(List<Doctor> doctores) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(DOCTOR_FILE))) {
+            for (Doctor doctor : doctores) {
+                writer.println(doctor.toString());
+            }
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 
 }
