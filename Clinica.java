@@ -7,6 +7,7 @@ import java.io.Serializable;
  */
 public class Clinica implements Serializable {
     private static final long serialVersionUID = 1L; 
+    private String id;
     private String nombre;
     private String direccion;
 
@@ -14,12 +15,32 @@ public class Clinica implements Serializable {
     /**
      * Constructor para crear una nueva instancia de Clinica.
      *
+     * @param id Identificador de la clinica
      * @param nombre El nombre de la clínica.
      * @param direccion La dirección de la clínica.
      */
     public Clinica(String nombre, String direccion) { 
+        this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;
+    }
+
+        /**
+     * Obtiene el identificador de la clínica.
+     *
+     * @return El identificador de la clínica.
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * Establece el identificador de la clínica.
+     *
+     * @param id El nuevo identificador de la clínica.
+     */
+    public void setId(String id) {
+        this.id = id;
     }
  
     /**
@@ -66,7 +87,7 @@ public class Clinica implements Serializable {
      */
     @Override
     public String toString() {
-        return nombre + "," + direccion;
+        return id + "," + nombre + "," + direccion;
     }
 }
 
