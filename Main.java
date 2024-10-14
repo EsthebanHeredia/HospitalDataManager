@@ -124,4 +124,36 @@ public class Main {
             }
         }
     }
+
+        private void showMenuClinica() {
+        boolean running = true;
+        while (running) {
+            System.out.println("1. Agregar Clínica");
+            System.out.println("2. Ver Información de Clínicas");
+            System.out.println("3. Volver");
+            System.out.print("Seleccione una opción: ");
+
+            try {
+                int option = scanner.nextInt();
+                scanner.nextLine(); // Consume newline
+
+                switch (option) {
+                    case 1:
+                        agregarClinica();
+                        break;
+                    case 2:
+                        infoClinica();
+                        break;
+                    case 3:
+                        running = false;
+                        break;
+                    default:
+                        System.out.println("Opción no válida.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Error: Debe ingresar un número válido.");
+                scanner.nextLine(); // Limpiar el buffer de entrada
+            }
+        }
+    }
 }
