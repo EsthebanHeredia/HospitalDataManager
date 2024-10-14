@@ -23,13 +23,22 @@ public class DataHandler {
             return records;
         }
 
-            // Generic method to write to file
     private void writeToFile(String fileName, String data) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(fileName, true))) {
             writer.println(data);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public List<Clinica> readClinicas() {
+        List<Clinica> clinicas = new ArrayList<>();
+        for (String[] record : readFromFile(CLINICA_FILE)) {
+            if (record.length == 3) {
+                clinicas.add(new Clinica(record[0], record[1], record[2]));
+            }
+        }
+        return clinicas;
     }
 
 
