@@ -114,5 +114,15 @@ public class DataHandler {
         return false;
     }
 
+        private boolean idExists(String fileName, String id) {
+        List<String[]> records = readFromFile(fileName);
+        for (String[] record : records) {
+            if (record[0].equals(id)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 }
