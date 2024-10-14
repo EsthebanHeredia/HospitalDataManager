@@ -41,5 +41,14 @@ public class DataHandler {
         return clinicas;
     }
 
+    
+    public void writeClinica(Clinica clinica) {
+        if (!idExists(CLINICA_FILE, clinica.getId())) {
+            writeToFile(CLINICA_FILE, clinica.toString());
+        } else {
+            System.out.println("ID de clínica ya existe.");
+        }
+    }
+
 
 }
