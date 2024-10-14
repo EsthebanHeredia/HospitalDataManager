@@ -1,5 +1,5 @@
 import java.io.Serializable;
-
+import java.util.list;
 /**
  * The Doctor class represents a doctor with an ID, name, and clinic.
  * This class implements Serializable to allow its instances to be serialized.
@@ -75,6 +75,14 @@ public class Doctor implements Serializable {
      */
     public void setClinica(String clinica) {
         this.clinica = clinica;
+    }
+
+        public void verHistorialMedico(Paciente paciente) {
+        List<String> historial = paciente.getHistorialMedico();
+        System.out.println("Historial médico de " + paciente.getNombre() + ":");
+        for (String registro : historial) {
+            System.out.println(registro);
+        }
     }
 
     /**
