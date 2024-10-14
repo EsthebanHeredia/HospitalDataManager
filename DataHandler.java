@@ -23,6 +23,14 @@ public class DataHandler {
             return records;
         }
 
-        
+            // Generic method to write to file
+    private void writeToFile(String fileName, String data) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(fileName, true))) {
+            writer.println(data);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
