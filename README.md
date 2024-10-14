@@ -3,7 +3,7 @@
 Es un sistema de gestion para manejar una base de datos de un hospital. El sistema guarda los datos de Pacientes, Doctores, y Clinicas.
 
 ## Prerequisites
-* Java 11
+* Java 11 o arriba.
 
 
 ## Building
@@ -11,19 +11,16 @@ Es un sistema de gestion para manejar una base de datos de un hospital. El siste
 2. Build the project: `mvn clean install`
 
 ## Running
-1. Run the application: `java -jar target/MainProyecto.jar`
+1. Run the application: `java -jar target/Main.jar`
 
 ## Usage
-Para usar la applicacion corra MainProyecto.java, esto le abrira un Menu como el siguente:
-1. Buscar Paciente
-2. Agregar Paciente
-3. Eliminar Paciente
-4. Buscar Doctor
-5. Agregar Doctor
-6. Eliminar Doctor
-7. Informacion de la Clinica
-8. Agregar Clinica
-9. Salir
+Para usar la applicacion corra Main.java, esto le abrira un Menu como el siguente:
+1. Gestionar Pacientes
+2. Gestionar Doctores
+3. Gestionar Clínicas
+4. Salir
+
+Donde cada una de las opciones tiene un submenu para hacer gestion.
 
 Use los numeros como estan indicados para ingresar a tal instancia.
 
@@ -32,6 +29,8 @@ Use los numeros como estan indicados para ingresar a tal instancia.
 * Doctor.java
 * Paciente.java
 * MainProyecto.java
+* DataHandler.java
+* Authenticator.java
 
 
 ## Contributing
