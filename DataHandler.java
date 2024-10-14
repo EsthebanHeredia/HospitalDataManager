@@ -84,5 +84,15 @@ public class DataHandler {
         return false;
     }
 
+        public List<Doctor> readDoctores() {
+        List<Doctor> doctores = new ArrayList<>();
+        for (String[] record : readFromFile(DOCTOR_FILE)) {
+            if (record.length == 3) {
+                doctores.add(new Doctor(record[0], record[1], record[2]));
+            }
+        }
+        return doctores;
+    }
+
 
 }
