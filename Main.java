@@ -215,4 +215,18 @@ public class Main {
             System.out.println("Error al eliminar el paciente.");
         }
     }
+
+        private boolean buscarDoctor() {
+        System.out.print("Ingrese ID del doctor: ");
+        String id = scanner.nextLine();
+        List<Doctor> doctores = data.readDoctores();
+        for (Doctor doctor : doctores) {
+            if (doctor.getId().equals(id)) {
+                System.out.println("Doctor encontrado: " + doctor);
+                return true;
+            }
+        }
+        System.out.println("Doctor no encontrado.");
+        return false;
+    }
 }
