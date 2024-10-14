@@ -171,27 +171,48 @@ public class Main {
     }
 
         private void agregarPaciente() {
-        System.out.print("Ingrese ID del paciente: ");
+            System.out.print("Ingrese ID del paciente: ");
+            String id = scanner.nextLine();
+            System.out.print("Ingrese nombre del paciente: ");
+            String nombre = scanner.nextLine();
+            System.out.print("Ingrese ID del doctor a cargo: ");
+            String doctorId = scanner.nextLine();
+            System.out.print("Ingrese ID de la clínica: ");
+            String clinicaId = scanner.nextLine();
+            System.out.print("Ingrese historial médico del paciente: ");
+            String historialMedico = scanner.nextLine();
+            System.out.print("Ingrese enfermedades del paciente: ");
+            String enfermedades = scanner.nextLine();
+            System.out.print("Ingrese cita médica del paciente: ");
+            String citaMedica = scanner.nextLine();
+    
+            Paciente paciente = new Paciente(id, nombre, doctorId, clinicaId);
+            paciente.agregarHistorialMedico(historialMedico);
+            paciente.agregarEnfermedad(enfermedades);
+            paciente.agregarCitaMedica(citaMedica);
+    
+            data.writePaciente(paciente);
+            System.out.println("Paciente agregado con éxito.");
+    }
+
+        private void eliminarPaciente() {
+        System.out.print("Ingrese ID del paciente a eliminar: ");
         String id = scanner.nextLine();
-        System.out.print("Ingrese nombre del paciente: ");
-        String nombre = scanner.nextLine();
-        System.out.print("Ingrese ID del doctor a cargo: ");
-        String doctorId = scanner.nextLine();
-        System.out.print("Ingrese ID de la clínica: ");
-        String clinicaId = scanner.nextLine();
-        System.out.print("Ingrese historial médico del paciente: ");
-        String historialMedico = scanner.nextLine();
-        System.out.print("Ingrese enfermedades del paciente: ");
-        String enfermedades = scanner.nextLine();
-        System.out.print("Ingrese cita médica del paciente: ");
-        String citaMedica = scanner.nextLine();
-
-        Paciente paciente = new Paciente(id, nombre, doctorId, clinicaId);
-        paciente.agregarHistorialMedico(historialMedico);
-        paciente.agregarEnfermedad(enfermedades);
-        paciente.agregarCitaMedica(citaMedica);
-
-        data.writePaciente(paciente);
-        System.out.println("Paciente agregado con éxito.");
+        List<Paciente> pacientes = data.readPacientes();
+        boolean eliminado = false;
+        List<Paciente> updatedPacientes = new ArrayList<>();
+        for (Paciente paciente : pacientes) {
+            if (!paciente.getId().equals(id)) {
+                updatedPacientes.add(paciente);
+            } else {
+                eliminado = true;
+            }
+        }
+        boolean success = data.writePacientes(updatedPacientes);
+        if (eliminado && success) {
+            System.out.println("Paciente eliminado con éxito.");
+        } else {
+            System.out.println("Error al eliminar el paciente.");
+        }
     }
 }
