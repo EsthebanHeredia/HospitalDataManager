@@ -72,5 +72,17 @@ public class DataHandler {
         }
     }
 
+        public boolean writePacientes(List<Paciente> pacientes) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(PACIENTE_FILE))) {
+            for (Paciente paciente : pacientes) {
+                writer.println(paciente.toString());
+            }
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 
 }
