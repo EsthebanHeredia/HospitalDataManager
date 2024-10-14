@@ -115,13 +115,20 @@ public class Paciente implements Serializable {
         return enfermedades;
     }
 
-    /**
-    * Meodo para sobreescribir lo deseado.
-    *
-    *@return Los 4 datos, id, nombre, doctor y clinica. 
-    */
+        public void agregarEnfermedad(String enfermedad) {
+        this.enfermedades.add(enfermedad);
+    }
+
+    public List<String> getCitasMedicas() {
+        return citasMedicas;
+    }
+
+    public void agregarCitaMedica(String cita) {
+        this.citasMedicas.add(cita);
+    }
+
     @Override
     public String toString() {
-        return id + "," + nombre + "," + doctor + "," + clinica;
+        return id + "," + nombre + "," + doctor + "," + clinica + "," + historialMedico + "," + enfermedades + "," + citasMedicas;
     }
 }
