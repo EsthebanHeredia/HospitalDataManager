@@ -242,4 +242,25 @@ public class Main {
             data.writeDoctor(doctor);
             System.out.println("Doctor agregado con éxito.");
     }
+
+        private void eliminarDoctor() {
+        System.out.print("Ingrese ID del doctor a eliminar: ");
+        String id = scanner.nextLine();
+        List<Doctor> doctores = data.readDoctores();
+        boolean eliminado = false;
+        List<Doctor> updatedDoctores = new ArrayList<>();
+        for (Doctor doctor : doctores) {
+            if (!doctor.getId().equals(id)) {
+                updatedDoctores.add(doctor);
+            } else {
+                eliminado = true;
+            }
+        }
+        boolean success = data.writeDoctores(updatedDoctores);
+        if (eliminado && success) {
+            System.out.println("Doctor eliminado con éxito.");
+        } else {
+            System.out.println("Error al eliminar el doctor.");
+        }
+    }
 }
