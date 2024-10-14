@@ -279,4 +279,22 @@ public class Main {
             System.out.println("Doctor no encontrado.");
             return;
         }
+
+        System.out.print("Ingrese ID del paciente: ");
+        String pacienteId = scanner.nextLine();
+        List<Paciente> pacientes = data.readPacientes();
+        Paciente paciente = null;
+        for (Paciente pac : pacientes) {
+            if (pac.getId().equals(pacienteId)) {
+                paciente = pac;
+                break;
+            }
+        }
+        if (paciente == null) {
+            System.out.println("Paciente no encontrado.");
+            return;
+        }
+
+        doctor.verHistorialMedico(paciente);
+    }
 }
