@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Main {
     public final Scanner scanner = new Scanner(System.in);
-    private static final String ADMIN_PASSWORD = "admin";
     private final DataHandler data = new DataHandler();
 
     public static void main(String[] args) {
@@ -107,8 +106,14 @@ public class Main {
                         buscarDoctor();
                         break;
                     case 3:
+                        System.out.println("\n[Accesso Denegado] El usuario y contraseña del administrador se require."); 
+                    if (verifyAdminPassword()) {
+                        System.out.println("Correct password, now you may exterminate the doctor. (who?)"); //Hecho por Adrian Arimany.
                         eliminarDoctor();
-                        break;
+                    } else {
+                        System.out.println("The verification can not be completed.");
+                    }
+                    break;
                     case 4:
                         verHistorialMedico();
                         break;
@@ -322,5 +327,31 @@ public class Main {
         Clinica clinica = new Clinica(id, nombre, direccion);
         data.writeClinica(clinica);
         System.out.println("Clínica agregada con éxito.");
+    }
+    /**
+     * AA
+     * Este metodo es para verificar la clave del admin. 
+     * @return true = contraseña y usuario corecta; false = contraseña y usuario incorecta. 
+     */
+    private boolean verifyAdminPassword() {
+        int attempts = 2; // the number of times the the user can attempt to answer the password.
+        while (attempts > 0) {
+            System.out.println("Ponga el usuario del Administrador: ");
+            String inputUsername = scanner.nextLine();
+
+            System.out.println("Ponga contraseña del Administrador: ");
+            String inputPassword = scanner.nextLine();
+
+            if (Authenticator.verifyCredentials(inputUsername, inputPassword)) {
+                return true;
+            }
+            attempts--; //remember the -- is like saying doing a substraction for each loop irritation.
+            if (attempts > 0) {
+                System.out.println("La contraseña o usuario estan equivocada. Prueve de nuevo");
+            }
+
+        }
+        System.out.println("Maximo numero de intentos terminados");
+        return false;
     }
 }
