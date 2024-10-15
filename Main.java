@@ -307,7 +307,7 @@ public class Main {
             System.out.println("Paciente no encontrado.");
             return;
         }
-
+        //El metodo verHistorialMedico esta en la clase doctor y por ello se neceista el id del doctor.
         doctor.verHistorialMedico(paciente); //Enseña lo que aparece en paciente.csv 
     }
     
