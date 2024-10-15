@@ -77,12 +77,20 @@ public class Doctor implements Serializable {
         this.clinica = clinica;
     }
 
-        public void verHistorialMedico(Paciente paciente) {
+    /**
+     * AAZ
+     * Busca el historial medico de un paciente 
+     * @param paciente el paciente que se quiere buscar su historial medico
+     * @return Un formato para de String que contiene la informacion medica del paciente.
+     */
+    public String verHistorialMedico(Paciente paciente) {
         List<String> historial = paciente.getHistorialMedico();
-        System.out.println("Historial médico de " + paciente.getNombre() + ":");
+        StringBuilder stringBuilder = new StringBuilder(); //Modifica un String sin necesidad de cambiarlo en la memoria.
+        stringBuilder.append("Historial médico de ").append(paciente.getNombre()).append(":\n");
         for (String registro : historial) {
-            System.out.println(registro);
+            stringBuilder.append(registro).append("\n"); //el \n crea una nueva linea
         }
+        return stringBuilder.toString(); //regresa el historial medico como un string. 
     }
 
     /**
