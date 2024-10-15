@@ -3,16 +3,26 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Clase principal que contiene el menú y las funcionalidades para gestionar pacientes, doctores y clínicas.
+ */
 public class Main {
     public final Scanner scanner = new Scanner(System.in);
     private static final String ADMIN_PASSWORD = "admin";
     private final DataHandler data = new DataHandler();
 
+    /**
+     * Método principal que inicia el programa.
+     * @param args Argumentos de la línea de comandos.
+     */
     public static void main(String[] args) {
         Main main = new Main();
         main.mainMenu();
     }
 
+    /**
+     * Muestra el menú principal y gestiona la selección de opciones.
+     */
     private void mainMenu() {
         boolean running = true;
         while (running) {
@@ -49,6 +59,9 @@ public class Main {
         }
     }
 
+    /**
+     * Muestra el menú de opciones para gestionar pacientes y procesa las selecciones.
+     */
     private void showMenuPaciente() {
         boolean running = true;
         while (running) {
@@ -85,6 +98,9 @@ public class Main {
         }
     }
 
+    /**
+     * Muestra el menú de opciones para gestionar doctores y procesa las selecciones.
+     */
     private void showMenuDoctor() {
         boolean running = true;
         while (running) {
@@ -125,6 +141,9 @@ public class Main {
         }
     }
 
+    /**
+     * Muestra el menú de opciones para gestionar clínicas y procesa las selecciones.
+     */
     private void showMenuClinica() {
         boolean running = true;
         while (running) {
@@ -157,6 +176,10 @@ public class Main {
         }
     }
 
+    /**
+     * Busca un paciente por su ID.
+     * @return true si el paciente fue encontrado, false de lo contrario.
+     */
     private boolean buscarPaciente() {
         System.out.print("Ingrese ID del paciente: ");
         String id = scanner.nextLine();
@@ -171,6 +194,9 @@ public class Main {
         return false;
     }
 
+    /**
+     * Agrega un nuevo paciente con los datos proporcionados por el usuario.
+     */
     private void agregarPaciente() {
         System.out.print("Ingrese ID del paciente: ");
         String id = scanner.nextLine();
@@ -196,6 +222,9 @@ public class Main {
         System.out.println("Paciente agregado con éxito.");
     }
 
+     /**
+     * Elimina un paciente existente de la lista de pacientes.
+     */
     private void eliminarPaciente() {
         System.out.print("Ingrese ID del paciente a eliminar: ");
         String id = scanner.nextLine();
@@ -217,6 +246,10 @@ public class Main {
         }
     }
 
+    /**
+     * Busca un doctor por su ID.
+     * @return true si el doctor fue encontrado, false de lo contrario.
+     */
     private boolean buscarDoctor() {
         System.out.print("Ingrese ID del doctor: ");
         String id = scanner.nextLine();
@@ -231,6 +264,9 @@ public class Main {
         return false;
     }
 
+    /**
+     * Agrega un nuevo doctor con los datos proporcionados por el usuario.
+     */
     private void agregarDoctor() {
         System.out.print("Ingrese ID del doctor: ");
         String id = scanner.nextLine();
@@ -244,6 +280,9 @@ public class Main {
         System.out.println("Doctor agregado con éxito.");
     }
 
+    /**
+     * Elimina un doctor existente de la lista de doctores.
+     */
     private void eliminarDoctor() {
         System.out.print("Ingrese ID del doctor a eliminar: ");
         String id = scanner.nextLine();
@@ -265,6 +304,9 @@ public class Main {
         }
     }
 
+    /**
+     * Muestra el historial médico de un paciente a cargo de un doctor específico.
+     */
     private void verHistorialMedico() {
         System.out.print("Ingrese ID del doctor: ");
         String doctorId = scanner.nextLine();
@@ -299,6 +341,9 @@ public class Main {
         doctor.verHistorialMedico(paciente);
     }
 
+    /**
+     * Muestra información de todas las clínicas registradas.
+     */
     private void infoClinica() {
         List<Clinica> clinicas = data.readClinicas();
         if (clinicas.isEmpty()) {
@@ -312,6 +357,9 @@ public class Main {
         }
     }
 
+    /**
+     * Agrega una nueva clínica con los datos proporcionados por el usuario.
+     */
     private void agregarClinica() {
         System.out.print("Ingrese ID de la clínica: ");
         String id = scanner.nextLine();
