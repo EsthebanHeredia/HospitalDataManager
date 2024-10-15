@@ -280,35 +280,56 @@ public class Main {
     private void verHistorialMedico() {
         System.out.print("Ingrese ID del doctor: ");
         String doctorId = scanner.nextLine();
+    
+        if (!data.idExists("doctores.csv", doctorId)) { //utiliza el metodo en DataHandler idExists.
+            System.out.println("Doctor no encontrado.");
+            return;
+        }
+    
         List<Doctor> doctores = data.readDoctores();
         Doctor doctor = null;
-        for (Doctor doc : doctores) { //Usuario busca el id del doctor
+        for (Doctor doc : doctores) { //busca el id del doctor
             if (doc.getId().equals(doctorId)) {
-                doctor = doc;
-                break;
+            doctor = doc;
             }
         }
+        
+
         if (doctor == null) {
             System.out.println("Doctor no encontrado.");
             return;
         }
 
-        System.out.print("Ingrese ID del paciente: ");
+        System.out.print("Ingrese ID del paciente: "); 
         String pacienteId = scanner.nextLine();
+    
+        // Verifica que el paciente existe en el csv.
+        if (!data.idExists("pacientes.csv", pacienteId)) { //utiliza el metodo en DataHandler idExists.
+            System.out.println("Paciente no encontrado.");
+            return;
+        }
+
+        
+        // Si el paciente existe, da la informacion del paciente.
         List<Paciente> pacientes = data.readPacientes();
         Paciente paciente = null;
-        for (Paciente pac : pacientes) { //busca el id del paciente
+        for (Paciente pac : pacientes) {
             if (pac.getId().equals(pacienteId)) {
                 paciente = pac;
-                break;
             }
         }
+
+        // Determina si el paciente existe
         if (paciente == null) {
             System.out.println("Paciente no encontrado.");
             return;
         }
-        //El metodo verHistorialMedico esta en la clase doctor y por ello se neceista el id del doctor.
-        doctor.verHistorialMedico(paciente); //Enseña lo que aparece en paciente.csv 
+    
+        // Captura el historial medico del paciente como un  String; note que verHistorialMeidco(paciente) es un metodo de la clase Doctor.
+        String historialMedico = doctor.verHistorialMedico(paciente);
+    
+        // Imprime el historial medico del paciente
+        System.out.println(historialMedico); 
     }
     
     /**
