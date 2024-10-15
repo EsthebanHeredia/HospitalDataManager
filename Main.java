@@ -248,7 +248,11 @@ public class Main {
             System.out.println("Doctor agregado con éxito.");
     }
 
-        private void eliminarDoctor() {
+    /**
+     * AAZ
+     * Elimina a un Doctor del sistema.
+     */
+    private void eliminarDoctor() {
         System.out.print("Ingrese ID del doctor a eliminar: ");
         String id = scanner.nextLine();
         List<Doctor> doctores = data.readDoctores();
@@ -269,12 +273,16 @@ public class Main {
         }
     }
 
-        private void verHistorialMedico() {
+    /**
+     * AAZ
+     * Este metodo funciona para ver el historial medico de un paciente; pero primero require buscar el doctor que esta registrado bajo ese paciente.
+     */
+    private void verHistorialMedico() {
         System.out.print("Ingrese ID del doctor: ");
         String doctorId = scanner.nextLine();
         List<Doctor> doctores = data.readDoctores();
         Doctor doctor = null;
-        for (Doctor doc : doctores) {
+        for (Doctor doc : doctores) { //Usuario busca el id del doctor
             if (doc.getId().equals(doctorId)) {
                 doctor = doc;
                 break;
@@ -289,7 +297,7 @@ public class Main {
         String pacienteId = scanner.nextLine();
         List<Paciente> pacientes = data.readPacientes();
         Paciente paciente = null;
-        for (Paciente pac : pacientes) {
+        for (Paciente pac : pacientes) { //busca el id del paciente
             if (pac.getId().equals(pacienteId)) {
                 paciente = pac;
                 break;
@@ -300,10 +308,14 @@ public class Main {
             return;
         }
 
-        doctor.verHistorialMedico(paciente);
+        doctor.verHistorialMedico(paciente); //Enseña lo que aparece en paciente.csv 
     }
-
-        private void infoClinica() {
+    
+    /**
+     * AAZ
+     * Este Metodo funciona para ver todas las clinicas que estan registradas en clinicas.csv
+     */
+    private void infoClinica() {
         List<Clinica> clinicas = data.readClinicas();
         if (clinicas.isEmpty()) {
             System.out.println("No hay clínicas registradas.");
@@ -315,8 +327,11 @@ public class Main {
             System.out.println(clinica);
         }
     }
-
-        private void agregarClinica() {
+    /**
+     * AAZ
+     * Este metodo funciona para agregar una clinica a su CSV corespondiente, usando sus atributos.
+     */
+    private void agregarClinica() {
         System.out.print("Ingrese ID de la clínica: ");
         String id = scanner.nextLine();
         System.out.print("Ingrese nombre de la clínica: ");
@@ -325,11 +340,11 @@ public class Main {
         String direccion = scanner.nextLine();
 
         Clinica clinica = new Clinica(id, nombre, direccion);
-        data.writeClinica(clinica);
+        data.writeClinica(clinica); //Pone la info de arriva dentro de clinicas.csv
         System.out.println("Clínica agregada con éxito.");
     }
     /**
-     * AA
+     * AAZ
      * Este metodo es para verificar la clave del admin. 
      * @return true = contraseña y usuario corecta; false = contraseña y usuario incorecta. 
      */
@@ -342,7 +357,7 @@ public class Main {
             System.out.println("Ponga contraseña del Administrador: ");
             String inputPassword = scanner.nextLine();
 
-            if (Authenticator.verifyCredentials(inputUsername, inputPassword)) {
+            if (Authenticator.verifyCredentials(inputUsername, inputPassword)) { 
                 return true;
             }
             attempts--; //remember the -- is like saying doing a substraction for each loop irritation.
