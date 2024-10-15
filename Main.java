@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Main {
     public final Scanner scanner = new Scanner(System.in);
-    private static final String ADMIN_PASSWORD = "admin";
+    //private static final String ADMIN_PASSWORD = "admin";
     private final DataHandler data = new DataHandler();
 
     public static void main(String[] args) {
@@ -107,8 +107,14 @@ public class Main {
                         buscarDoctor();
                         break;
                     case 3:
+                        System.out.println("\n[Accesso Denegado] El usuario y contraseña del administrador se require."); 
+                    if (verifyAdminPassword()) {
+                        System.out.println("Correct password, now you may exterminate the doctor. (who?)"); //Hecho por Adrian Arimany.
                         eliminarDoctor();
-                        break;
+                    } else {
+                        System.out.println("The verification can not be completed.");
+                    }
+                    break;
                     case 4:
                         verHistorialMedico();
                         break;
@@ -243,20 +249,26 @@ public class Main {
         data.writeDoctor(doctor);
         System.out.println("Doctor agregado con éxito.");
     }
-
+    /**
+     * AAZ
+     * Elimina a un Doctor del sistema.
+     */
     private void eliminarDoctor() {
         System.out.print("Ingrese ID del doctor a eliminar: ");
         String id = scanner.nextLine();
         List<Doctor> doctores = data.readDoctores();
         boolean eliminado = false;
         List<Doctor> updatedDoctores = new ArrayList<>();
-        for (Doctor doctor : doctores) {
+        //busca al id del doctor
+        for (Doctor doctor : doctores) { // Busca el id del doctor para eliminar.
             if (!doctor.getId().equals(id)) {
                 updatedDoctores.add(doctor);
             } else {
                 eliminado = true;
             }
         }
+        
+        // Write the updated list of doctors to the file
         boolean success = data.writeDoctores(updatedDoctores);
         if (eliminado && success) {
             System.out.println("Doctor eliminado con éxito.");
@@ -264,7 +276,7 @@ public class Main {
             System.out.println("Error al eliminar el doctor.");
         }
     }
-
+    
     private void verHistorialMedico() {
         System.out.print("Ingrese ID del doctor: ");
         String doctorId = scanner.nextLine();
@@ -298,10 +310,13 @@ public class Main {
 
         doctor.verHistorialMedico(paciente);
     }
-
+    /**
+     * AAZ
+     * Este Metodo funciona para ver todas las clinicas que estan registradas en clinicas.csv
+     */
     private void infoClinica() {
         List<Clinica> clinicas = data.readClinicas();
-        if (clinicas.isEmpty()) {
+        if (clinicas.isEmpty()) { //en el caso que clinicas.csv este vacio.
             System.out.println("No hay clínicas registradas.");
             return;
         }
@@ -312,6 +327,10 @@ public class Main {
         }
     }
 
+    /**
+     * AA
+     * Este metodo funciona para agregar una clinica a su CSV corespondiente, usando sus atributos.
+     */
     private void agregarClinica() {
         System.out.print("Ingrese ID de la clínica: ");
         String id = scanner.nextLine();
@@ -321,7 +340,34 @@ public class Main {
         String direccion = scanner.nextLine();
 
         Clinica clinica = new Clinica(id, nombre, direccion);
-        data.writeClinica(clinica);
+        data.writeClinica(clinica); //Pone la info de arriva dentro de clinicas.csv
         System.out.println("Clínica agregada con éxito.");
+    }
+
+    /**
+     * AAZ
+     * Este metodo es para verificar la clave del admin.
+     * @return true = contraseña y usuario corecta; false = contraseña y usuario incorecta.
+     */
+    private boolean verifyAdminPassword() {
+        int attempts = 2; // the number of times the the user can attempt to answer the password.
+        while (attempts > 0) {
+            System.out.println("Ponga el usuario del Administrador: ");
+            String inputUsername = scanner.nextLine();
+
+            System.out.println("Ponga contraseña del Administrador: ");
+            String inputPassword = scanner.nextLine();
+
+            if (Authenticator.verifyCredentials(inputUsername, inputPassword)) {
+                return true;
+            }
+            attempts--; //remember the -- is like saying doing a substraction for each loop irritation.
+            if (attempts > 0) {
+                System.out.println("La contraseña o usuario estan equivocada. Prueve de nuevo");
+            }
+
+        }
+        System.out.println("Maximo numero de intentos terminados");
+        return false;
     }
 }
