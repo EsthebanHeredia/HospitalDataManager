@@ -276,13 +276,17 @@ public class Main {
             System.out.println("Error al eliminar el doctor.");
         }
     }
-    
+
+    /**
+     * AAZ
+     * Este metodo funciona para ver el historial medico de un paciente; pero primero require buscar el doctor que esta registrado bajo ese paciente.
+     */
     private void verHistorialMedico() {
         System.out.print("Ingrese ID del doctor: ");
         String doctorId = scanner.nextLine();
         List<Doctor> doctores = data.readDoctores();
         Doctor doctor = null;
-        for (Doctor doc : doctores) {
+        for (Doctor doc : doctores) { //busca el id del doctor
             if (doc.getId().equals(doctorId)) {
                 doctor = doc;
                 break;
@@ -297,7 +301,7 @@ public class Main {
         String pacienteId = scanner.nextLine();
         List<Paciente> pacientes = data.readPacientes();
         Paciente paciente = null;
-        for (Paciente pac : pacientes) {
+        for (Paciente pac : pacientes) { //busca id del paciente.
             if (pac.getId().equals(pacienteId)) {
                 paciente = pac;
                 break;
@@ -308,7 +312,11 @@ public class Main {
             return;
         }
 
-        doctor.verHistorialMedico(paciente);
+        // Captura el historial medico del paciente como un  String; note que verHistorialMeidco(paciente) es un metodo de la clase Doctor.
+        String historialMedico = doctor.verHistorialMedico(paciente);
+    
+        // Imprime el historial medico del paciente
+        System.out.println(historialMedico);
     }
     /**
      * AAZ
