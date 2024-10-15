@@ -1,11 +1,8 @@
-import java.util.InputMismatchException;
-import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Main {
     public final Scanner scanner = new Scanner(System.in);
-    //private static final String ADMIN_PASSWORD = "admin";
+    private static final String ADMIN_PASSWORD = "admin";
     private final DataHandler data = new DataHandler();
 
     public static void main(String[] args) {
@@ -21,30 +18,24 @@ public class Main {
             System.out.println("3. Gestionar Clínicas");
             System.out.println("4. Salir");
             System.out.print("Seleccione una opción: ");
+            int option = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
 
-            try {
-                int option = scanner.nextInt();
-                scanner.nextLine(); // Consume newline
-
-                switch (option) {
-                    case 1:
-                        showMenuPaciente();
-                        break;
-                    case 2:
-                        showMenuDoctor();
-                        break;
-                    case 3:
-                        showMenuClinica();
-                        break;
-                    case 4:
-                        running = false;
-                        break;
-                    default:
-                        System.out.println("Opción no válida.");
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("Error: Debe ingresar un número válido.");
-                scanner.nextLine(); // Limpiar el buffer de entrada
+            switch (option) {
+                case 1:
+                    showMenuPaciente();
+                    break;
+                case 2:
+                    showMenuDoctor();
+                    break;
+                case 3:
+                    showMenuClinica();
+                    break;
+                case 4:
+                    running = false;
+                    break;
+                default:
+                    System.out.println("Opción no válida.");
             }
         }
     }
@@ -57,30 +48,24 @@ public class Main {
             System.out.println("3. Eliminar Paciente");
             System.out.println("4. Volver");
             System.out.print("Seleccione una opción: ");
+            int option = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
 
-            try {
-                int option = scanner.nextInt();
-                scanner.nextLine(); // Consume newline
-
-                switch (option) {
-                    case 1:
-                        agregarPaciente();
-                        break;
-                    case 2:
-                        buscarPaciente();
-                        break;
-                    case 3:
-                        eliminarPaciente();
-                        break;
-                    case 4:
-                        running = false;
-                        break;
-                    default:
-                        System.out.println("Opción no válida.");
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("Error: Debe ingresar un número válido.");
-                scanner.nextLine(); // Limpiar el buffer de entrada
+            switch (option) {
+                case 1:
+                    agregarPaciente();
+                    break;
+                case 2:
+                    buscarPaciente();
+                    break;
+                case 3:
+                    eliminarPaciente();
+                    break;
+                case 4:
+                    running = false;
+                    break;
+                default:
+                    System.out.println("Opción no válida.");
             }
         }
     }
@@ -94,39 +79,27 @@ public class Main {
             System.out.println("4. Ver Historial Médico de Paciente");
             System.out.println("5. Volver");
             System.out.print("Seleccione una opción: ");
+            int option = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
 
-            try {
-                int option = scanner.nextInt();
-                scanner.nextLine(); // Consume newline
-
-                switch (option) {
-                    case 1:
-                        agregarDoctor();
-                        break;
-                    case 2:
-                        buscarDoctor();
-                        break;
-                    case 3:
-                        System.out.println("\n[Accesso Denegado] El usuario y contraseña del administrador se require."); 
-                    if (verifyAdminPassword()) {
-                        System.out.println("Correct password, now you may exterminate the doctor. (who?)"); //Hecho por Adrian Arimany.
-                        eliminarDoctor();
-                    } else {
-                        System.out.println("The verification can not be completed.");
-                    }
+            switch (option) {
+                case 1:
+                    agregarDoctor();
                     break;
-                    case 4:
-                        verHistorialMedico();
-                        break;
-                    case 5:
-                        running = false;
-                        break;
-                    default:
-                        System.out.println("Opción no válida.");
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("Error: Debe ingresar un número válido.");
-                scanner.nextLine(); // Limpiar el buffer de entrada
+                case 2:
+                    buscarDoctor();
+                    break;
+                case 3:
+                    eliminarDoctor();
+                    break;
+                case 4:
+                    verHistorialMedico();
+                    break;
+                case 5:
+                    running = false;
+                    break;
+                default:
+                    System.out.println("Opción no válida.");
             }
         }
     }
@@ -138,27 +111,21 @@ public class Main {
             System.out.println("2. Ver Información de Clínicas");
             System.out.println("3. Volver");
             System.out.print("Seleccione una opción: ");
+            int option = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
 
-            try {
-                int option = scanner.nextInt();
-                scanner.nextLine(); // Consume newline
-
-                switch (option) {
-                    case 1:
-                        agregarClinica();
-                        break;
-                    case 2:
-                        infoClinica();
-                        break;
-                    case 3:
-                        running = false;
-                        break;
-                    default:
-                        System.out.println("Opción no válida.");
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("Error: Debe ingresar un número válido.");
-                scanner.nextLine(); // Limpiar el buffer de entrada
+            switch (option) {
+                case 1:
+                    agregarClinica();
+                    break;
+                case 2:
+                    infoClinica();
+                    break;
+                case 3:
+                    running = false;
+                    break;
+                default:
+                    System.out.println("Opción no válida.");
             }
         }
     }
@@ -249,26 +216,20 @@ public class Main {
         data.writeDoctor(doctor);
         System.out.println("Doctor agregado con éxito.");
     }
-    /**
-     * AAZ
-     * Elimina a un Doctor del sistema.
-     */
+
     private void eliminarDoctor() {
         System.out.print("Ingrese ID del doctor a eliminar: ");
         String id = scanner.nextLine();
         List<Doctor> doctores = data.readDoctores();
         boolean eliminado = false;
         List<Doctor> updatedDoctores = new ArrayList<>();
-        //busca al id del doctor
-        for (Doctor doctor : doctores) { // Busca el id del doctor para eliminar.
+        for (Doctor doctor : doctores) {
             if (!doctor.getId().equals(id)) {
                 updatedDoctores.add(doctor);
             } else {
                 eliminado = true;
             }
         }
-        
-        // Write the updated list of doctors to the file
         boolean success = data.writeDoctores(updatedDoctores);
         if (eliminado && success) {
             System.out.println("Doctor eliminado con éxito.");
@@ -277,16 +238,12 @@ public class Main {
         }
     }
 
-    /**
-     * AAZ
-     * Este metodo funciona para ver el historial medico de un paciente; pero primero require buscar el doctor que esta registrado bajo ese paciente.
-     */
     private void verHistorialMedico() {
         System.out.print("Ingrese ID del doctor: ");
         String doctorId = scanner.nextLine();
         List<Doctor> doctores = data.readDoctores();
         Doctor doctor = null;
-        for (Doctor doc : doctores) { //busca el id del doctor
+        for (Doctor doc : doctores) {
             if (doc.getId().equals(doctorId)) {
                 doctor = doc;
                 break;
@@ -301,7 +258,7 @@ public class Main {
         String pacienteId = scanner.nextLine();
         List<Paciente> pacientes = data.readPacientes();
         Paciente paciente = null;
-        for (Paciente pac : pacientes) { //busca id del paciente.
+        for (Paciente pac : pacientes) {
             if (pac.getId().equals(pacienteId)) {
                 paciente = pac;
                 break;
@@ -312,33 +269,20 @@ public class Main {
             return;
         }
 
-        // Captura el historial medico del paciente como un  String; note que verHistorialMeidco(paciente) es un metodo de la clase Doctor.
-        String historialMedico = doctor.verHistorialMedico(paciente);
-    
-        // Imprime el historial medico del paciente
-        System.out.println(historialMedico);
+        doctor.verHistorialMedico(paciente);
     }
-    /**
-     * AAZ
-     * Este Metodo funciona para ver todas las clinicas que estan registradas en clinicas.csv
-     */
+
     private void infoClinica() {
         List<Clinica> clinicas = data.readClinicas();
-        if (clinicas.isEmpty()) { //en el caso que clinicas.csv este vacio.
+        if (clinicas.isEmpty()) {
             System.out.println("No hay clínicas registradas.");
-            return;
-        }
-
-        System.out.println("Información de Clínicas:");
-        for (Clinica clinica : clinicas) {
-            System.out.println(clinica);
+        } else {
+            for (Clinica clinica : clinicas) {
+                System.out.println(clinica);
+            }
         }
     }
 
-    /**
-     * AA
-     * Este metodo funciona para agregar una clinica a su CSV corespondiente, usando sus atributos.
-     */
     private void agregarClinica() {
         System.out.print("Ingrese ID de la clínica: ");
         String id = scanner.nextLine();
@@ -346,36 +290,14 @@ public class Main {
         String nombre = scanner.nextLine();
         System.out.print("Ingrese dirección de la clínica: ");
         String direccion = scanner.nextLine();
-
         Clinica clinica = new Clinica(id, nombre, direccion);
-        data.writeClinica(clinica); //Pone la info de arriva dentro de clinicas.csv
+        data.writeClinica(clinica);
         System.out.println("Clínica agregada con éxito.");
     }
 
-    /**
-     * AAZ
-     * Este metodo es para verificar la clave del admin.
-     * @return true = contraseña y usuario corecta; false = contraseña y usuario incorecta.
-     */
     private boolean verifyAdminPassword() {
-        int attempts = 2; // the number of times the the user can attempt to answer the password.
-        while (attempts > 0) {
-            System.out.println("Ponga el usuario del Administrador: ");
-            String inputUsername = scanner.nextLine();
-
-            System.out.println("Ponga contraseña del Administrador: ");
-            String inputPassword = scanner.nextLine();
-
-            if (Authenticator.verifyCredentials(inputUsername, inputPassword)) {
-                return true;
-            }
-            attempts--; //remember the -- is like saying doing a substraction for each loop irritation.
-            if (attempts > 0) {
-                System.out.println("La contraseña o usuario estan equivocada. Prueve de nuevo");
-            }
-
-        }
-        System.out.println("Maximo numero de intentos terminados");
-        return false;
+        System.out.print("Ingrese la contraseña de administrador: ");
+        String password = scanner.nextLine();
+        return ADMIN_PASSWORD.equals(password);
     }
 }
