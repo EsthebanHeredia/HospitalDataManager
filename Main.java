@@ -255,18 +255,24 @@ public class Main {
     private void eliminarDoctor() {
         System.out.print("Ingrese ID del doctor a eliminar: ");
         String id = scanner.nextLine();
+        
+        //busca al id del doctor usando el metodo idExists.
+        if (!data.idExists("doctores.csv", id)) {
+            System.out.println("Doctor no encontrado.");
+            return;
+        }
         List<Doctor> doctores = data.readDoctores();
-        boolean eliminado = false;
         List<Doctor> updatedDoctores = new ArrayList<>();
-        for (Doctor doctor : doctores) {
+        for (Doctor doctor : doctores) { // Busca el id del doctor para eliminar.
             if (!doctor.getId().equals(id)) {
                 updatedDoctores.add(doctor);
-            } else {
-                eliminado = true;
             }
         }
+        
+        // Actualiza el doctor.csv file.
         boolean success = data.writeDoctores(updatedDoctores);
-        if (eliminado && success) {
+        
+        if (success) {
             System.out.println("Doctor eliminado con éxito.");
         } else {
             System.out.println("Error al eliminar el doctor.");
