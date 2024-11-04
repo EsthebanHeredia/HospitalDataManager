@@ -1,18 +1,28 @@
 import java.util.Scanner;
 
+/**
+ * Clase principal que gestiona el sistema de gestión de clínica.
+ */
 public class Main {
     // Scanner para leer entradas del usuario
     private final Scanner scanner = new Scanner(System.in);
     // Instancia de DataHandler para gestionar operaciones de datos (como guardado y recuperación)
     private final DataHandler dataHandler = new DataHandler();
 
+    /**
+     * Método principal que inicia el sistema.
+     *
+     * @param args Argumentos de línea de comandos
+     */
     public static void main(String[] args) {
         Main main = new Main();
         // Inicia el menú principal
         main.mainMenu();
     }
 
-    // Método que despliega el menú principal del sistema
+    /**
+     * Método que despliega el menú principal del sistema.
+     */
     private void mainMenu() {
         boolean running = true;
         while (running) {
@@ -46,7 +56,9 @@ public class Main {
         }
     }
 
-    // Método para gestionar la entrada como paciente
+    /**
+     * Método para gestionar la entrada como paciente.
+     */
     private void ingresarComoPaciente() {
         limpiarPantalla();
         System.out.println("1. Soy un nuevo paciente");
@@ -82,7 +94,9 @@ public class Main {
         }
     }
 
-    // Método para gestionar la entrada como doctor
+    /**
+     * Método para gestionar la entrada como doctor.
+     */
     private void ingresarComoDoctor() {
         limpiarPantalla();
         System.out.print("Ingrese su usuario: ");
@@ -100,7 +114,9 @@ public class Main {
         }
     }
 
-    // Método para gestionar la entrada como administrador
+    /**
+     * Método para gestionar la entrada como administrador.
+     */
     private void ingresarComoAdministrador() {
         limpiarPantalla();
         System.out.print("Ingrese su usuario: ");
@@ -116,7 +132,11 @@ public class Main {
         }
     }
 
-    // Menú de opciones para el doctor
+    /**
+     * Menú de opciones para el doctor.
+     *
+     * @param doctor El doctor que ha iniciado sesión
+     */
     private void doctorMenu(Doctor doctor) {
         boolean running = true;
         while (running) {
@@ -146,7 +166,9 @@ public class Main {
         }
     }
 
-    // Menú de opciones para el administrador
+    /**
+     * Menú de opciones para el administrador.
+     */
     private void administradorMenu() {
         boolean running = true;
         while (running) {
@@ -176,7 +198,9 @@ public class Main {
         }
     }
 
-    // Método para que el doctor vea el historial médico de un paciente
+    /**
+     * Método para que el doctor vea el historial médico de un paciente.
+     */
     private void verHistorialPaciente() {
         System.out.print("Ingrese el ID del paciente: ");
         String idPaciente = scanner.nextLine();
@@ -188,7 +212,9 @@ public class Main {
         }
     }
 
-    // Método para que el doctor agregue información al historial médico del paciente
+    /**
+     * Método para que el doctor agregue información al historial médico del paciente.
+     */
     private void agregarInformacionAPaciente() {
         System.out.print("Ingrese el ID del paciente: ");
         String idPaciente = scanner.nextLine();
@@ -204,7 +230,9 @@ public class Main {
         }
     }
 
-    // Método para agregar una nueva clínica al sistema
+    /**
+     * Método para agregar una nueva clínica al sistema.
+     */
     private void agregarClinica() {
         System.out.print("Ingrese nombre de la clínica: ");
         String nombre = scanner.nextLine();
@@ -215,7 +243,9 @@ public class Main {
         System.out.println("Clínica agregada con éxito.");
     }
 
-    // Método para agregar un nuevo doctor al sistema
+    /**
+     * Método para agregar un nuevo doctor al sistema.
+     */
     private void agregarDoctor() {
         System.out.print("Ingrese nombre del doctor: ");
         String nombre = scanner.nextLine();
@@ -226,17 +256,24 @@ public class Main {
         System.out.println("Doctor agregado con éxito.");
     }
 
-    // Método para limpiar la pantalla
+    /**
+     * Método para limpiar la pantalla.
+     */
     private void limpiarPantalla() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
 
-    // Método para obtener el nombre del paciente
+    /**
+     * Método para obtener el nombre del paciente.
+     *
+     * @return Nombre del paciente ingresado
+     */
     private String obtenerNombrePaciente() {
         System.out.print("Ingrese nombre del paciente: ");
         return scanner.nextLine();
     }
 }
+
 
 
