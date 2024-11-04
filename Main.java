@@ -53,7 +53,27 @@ public class Main {
                 System.out.println("Opción no válida.");
         }
     }
-
+        switch (option) {
+            case 1:
+                Paciente nuevoPaciente = new Paciente(dataHandler.generarIdPaciente(), obtenerNombrePaciente());
+                dataHandler.writePaciente(nuevoPaciente);
+                System.out.println("Paciente registrado con éxito. Su ID es: " + nuevoPaciente.getId());
+                break;
+            case 2:
+                System.out.print("Ingrese su ID de paciente: ");
+                String idPaciente = scanner.nextLine();
+                Paciente paciente = dataHandler.buscarPacientePorId(idPaciente);
+                if (paciente != null) {
+                    paciente.agregarCitaMedica("Nueva cita");
+                    dataHandler.writePaciente(paciente);
+                    System.out.println("Cita agregada con éxito.");
+                } else {
+                    System.out.println("ID no encontrado, intente otra vez.");
+                }
+                break;
+            default:
+                System.out.println("Opción no válida.");
+        }
 
 
     
