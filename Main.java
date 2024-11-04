@@ -55,6 +55,15 @@ public class Main {
         System.out.println("Credenciales incorrectas.");
     }
 }
+private void iniciarSesionPaciente() {
+    System.out.print("Ingrese su ID de paciente: ");
+    String id = scanner.nextLine();
+    if (Authenticator.validatePaciente(id)) {
+        mostrarMenuPaciente();
+    } else {
+        System.out.println("ID de paciente no encontrado.");
+    }
+}
 
 
 
