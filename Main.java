@@ -32,6 +32,17 @@ public class Main {
     }
 }
 
+        private void verHistorialPaciente() {
+        System.out.print("Ingrese el ID del paciente: ");
+        String idPaciente = scanner.nextLine();
+        Paciente paciente = dataHandler.buscarPacientePorId(idPaciente);
+        if (paciente != null) {
+            System.out.println("Historial Médico: " + paciente.getHistorialMedico());
+        } else {
+            System.out.println("ID no encontrado, intente nuevamente.");
+        }
+    }
+
         private void ingresarComoPaciente() {
         limpiarPantalla();
         System.out.println("1. Soy un nuevo paciente");
