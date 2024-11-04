@@ -122,7 +122,11 @@ private void agregarClinica() {
             System.out.println("4. Ver Historial Médico de Paciente");
             System.out.println("5. Volver");
             System.out.print("Seleccione una opción: ");
-
+private void agregarSintomasYReceta(Paciente paciente) {
+    paciente.agregarSintomas("Descripción");
+    paciente.agregarReceta("Receta detallada");
+    data.writePacientes(pacientes);
+}
             try {
                 int option = scanner.nextInt();
                 scanner.nextLine(); // Consume newline
