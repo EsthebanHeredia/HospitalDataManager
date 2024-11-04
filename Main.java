@@ -15,10 +15,14 @@ public class Main {
      * Método principal que inicia el programa.
      * @param args Argumentos de la línea de comandos.
      */
-    public static void main(String[] args) {
-        Main main = new Main();
-        main.mainMenu();
-    }
+    private void mainMenu() {
+    System.out.println("1. Iniciar sesión como Paciente");
+    System.out.println("2. Registrar nuevo Paciente"); // Nueva opción de registro
+    System.out.println("3. Iniciar sesión como Doctor");
+    System.out.println("4. Iniciar sesión como Administrador");
+    // Otras opciones
+}
+
 
     /**
      * Muestra el menú principal y gestiona la selección de opciones.
