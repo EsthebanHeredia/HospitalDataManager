@@ -78,7 +78,11 @@ public class Main {
             System.out.println("3. Eliminar Paciente");
             System.out.println("4. Volver");
             System.out.print("Seleccione una opción: ");
-
+private void agregarClinica() {
+    System.out.print("Ingrese nombre de la clínica: ");
+    Clinica clinica = new Clinica(nombre);
+    data.writeClinica(clinica);
+}
             try {
                 int option = scanner.nextInt();
                 scanner.nextLine(); // Consume newline
