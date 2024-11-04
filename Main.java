@@ -60,6 +60,12 @@ public class Main {
                     default:
                         System.out.println("Opción no válida.");
                 }
+                private void iniciarSesionDoctor() {
+    System.out.print("Ingrese ID del doctor: ");
+    if (doctorExiste(id)) { 
+        mostrarMenuDoctor();
+    }
+}
             } catch (InputMismatchException e) {
                 System.out.println("Error: Debe ingresar un número válido.");
                 scanner.nextLine(); // Limpiar el buffer de entrada
