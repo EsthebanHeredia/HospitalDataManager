@@ -23,7 +23,15 @@ public class Main {
     /**
      * Muestra el menú principal y gestiona la selección de opciones.
      */
-    private void mainMenu() {
+    private void mainMenu()
+    private void accesoAdministrador() {
+    System.out.print("Ingrese usuario: ");
+    System.out.print("Ingrese contraseña: ");
+    if (usuario.equals("admin") && password.equals("admin")) { 
+        mostrarMenuAdmin();
+    }
+}
+    {
         boolean running = true;
         while (running) {
             System.out.println("1. Gestionar Pacientes");
