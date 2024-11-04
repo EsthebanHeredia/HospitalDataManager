@@ -141,6 +141,22 @@ public class Main {
         }
     }
 
+
+    private void agregarInformacionAPaciente() {
+        System.out.print("Ingrese el ID del paciente: ");
+        String idPaciente = scanner.nextLine();
+        Paciente paciente = dataHandler.buscarPacientePorId(idPaciente);
+        if (paciente != null) {
+            System.out.print("Ingrese síntomas o receta: ");
+            String info = scanner.nextLine();
+            paciente.agregarHistorialMedico(info);
+            dataHandler.writePaciente(paciente);
+            System.out.println("Información agregada al historial.");
+        } else {
+            System.out.println("ID no encontrado, intente nuevamente.");
+        }
+    }
+
     /**
      * Muestra el menú de opciones para gestionar pacientes y procesa las selecciones.
      */
