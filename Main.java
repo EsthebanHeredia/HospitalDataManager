@@ -162,7 +162,10 @@ private void agregarSintomasYReceta(Paciente paciente) {
             }
         }
     }
-
+private void clearScreen() {
+    System.out.print("\033[H\033[2J");
+    System.out.flush();
+}
     /**
      * Muestra el menú de opciones para gestionar clínicas y procesa las selecciones.
      */
