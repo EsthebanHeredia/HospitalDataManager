@@ -36,4 +36,61 @@ public class Administrador implements Serializable {
             esperarEnter(scanner);
         }
     }
+
+    public void menuAdministrador(Scanner scanner, DataHandler dataHandler) {
+        boolean running = true;
+        while (running) {
+            limpiarPantalla();
+            System.out.println("=== MENÚ ADMINISTRADOR ===");
+            System.out.println("1. Ver pacientes");
+            System.out.println("2. Ver doctores");
+            System.out.println("3. Ver clínicas");
+            System.out.println("4. Agregar paciente");
+            System.out.println("5. Agregar doctor");
+            System.out.println("6. Agregar clínica");
+            System.out.println("7. Agregar administrador");
+            System.out.println("8. Salir");
+            System.out.print("Seleccione una opción: ");
+
+            try {
+                int opcion = Integer.parseInt(scanner.nextLine());
+                switch (opcion) {
+                    case 1:
+                        dataHandler.verPacientes();
+                        esperarEnter(scanner);
+                        break;
+                    case 2:
+                        dataHandler.verDoctores();
+                        esperarEnter(scanner);
+                        break;
+                    case 3:
+                        dataHandler.verClinicas();
+                        esperarEnter(scanner);
+                        break;
+                    case 4:
+                        dataHandler.agregarPacienteConScanner(scanner);
+                        break;
+                    case 5:
+                        dataHandler.agregarDoctorConScanner(scanner);
+                        break;
+                    case 6:
+                        dataHandler.agregarClinicaConScanner(scanner);
+                        break;
+                    case 7:
+                        dataHandler.agregarAdministradorConScanner(scanner);
+                        break;
+                    case 8:
+                        running = false;
+                        break;
+                    default:
+                        System.out.println("Opción inválida");
+                        esperarEnter(scanner);
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Por favor ingrese un número válido");
+                esperarEnter(scanner);
+            }
+        }
+    }
+    
 }
