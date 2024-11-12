@@ -50,5 +50,10 @@ public class Main {
         }
         scanner.close();
     }
+
+        private void esperarEnter() {
+        System.out.println("\nPresione Enter para continuar...");
+        scanner.nextLine();
+    }
 }
 
