@@ -97,5 +97,12 @@ public class Administrador implements Serializable {
         System.out.println("\nPresione Enter para continuar...");
         scanner.nextLine();
     }
-    
+
+        private void limpiarPantalla() {
+        try {
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        } catch (IOException | InterruptedException ex) {
+            System.out.println("Error al limpiar pantalla.");
+        }
+    }
 }
