@@ -92,5 +92,10 @@ public class Administrador implements Serializable {
             }
         }
     }
+
+        private static void esperarEnter(Scanner scanner) {
+        System.out.println("\nPresione Enter para continuar...");
+        scanner.nextLine();
+    }
     
 }
