@@ -171,4 +171,12 @@ public class Paciente implements Serializable {
             }
         }
     }
+
+        private void mostrarHistorialMedico(Scanner scanner) {
+        System.out.println("Historial Médico de " + nombre + ":");
+        for (HistorialMedico historial : historialMedico) {
+            System.out.println(historial);
+        }
+        esperarEnter(scanner);
+    }
 }
