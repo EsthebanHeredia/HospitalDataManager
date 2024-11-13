@@ -197,4 +197,9 @@ public class Paciente implements Serializable {
         }
         esperarEnter(scanner);
     }
+
+        private static void esperarEnter(Scanner scanner) {
+        System.out.println("\nPresione Enter para continuar...");
+        scanner.nextLine();
+    }
 }
