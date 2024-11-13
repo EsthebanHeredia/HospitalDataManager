@@ -95,4 +95,45 @@ public class Paciente implements Serializable {
         sb.append("\"");
         return sb.toString();
     }
+
+        public static void iniciarSesion(Scanner scanner) {
+        System.out.println("1. Soy un nuevo paciente");
+        System.out.println("2. Ya tengo un ID de paciente");
+        System.out.print("Seleccione una opción: ");
+        try {
+            int option = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (option) {
+                case 1:
+                    System.out.print("Ingrese su nombre: ");
+                    String nombre = scanner.nextLine();
+                    String id = generarIdPaciente();
+                    System.out.println("Su ID de paciente es: " + id); // Imprimir la ID del nuevo paciente
+                    esperarEnter(scanner); // Esperar a que el usuario presione Enter antes de continuar
+                    Paciente nuevoPaciente = new Paciente(id, nombre);
+                    nuevoPaciente.guardarPaciente();
+                    nuevoPaciente.menuPaciente(scanner);
+                    break;
+                case 2:
+                    System.out.print("Ingrese su ID de paciente: ");
+                    String pacienteId = scanner.nextLine();
+                    Paciente paciente = buscarPacientePorId(pacienteId);
+                    if (paciente != null) {
+                        paciente.menuPaciente(scanner);
+                    } else {
+                        System.out.println("Paciente no encontrado.");
+                        esperarEnter(scanner);
+                    }
+                    break;
+                default:
+                    System.out.println("Opción no válida.");
+                    esperarEnter(scanner);
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("Entrada inválida. Por favor, ingrese un número.");
+            scanner.nextLine(); // Limpiar el buffer del scanner
+            esperarEnter(scanner);
+        }
+    }
 }
