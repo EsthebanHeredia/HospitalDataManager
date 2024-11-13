@@ -192,6 +192,22 @@ public class DataHandler {
             System.err.println("No se pudo renombrar el archivo temporal");
         }
     }
+
+        public void agregarDoctor(Doctor doctor) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(DOCTOR_CSV, true))) {
+            String record = String.format("%s,%s,%s,\"%s\"",
+                    doctor.getId(),
+                    doctor.getNombre(),
+                    doctor.getEspecialidad(),
+                    doctor.getContrasena());
+            bw.write(record);
+            bw.newLine();
+            System.out.println("Doctor agregado exitosamente. ID asignado: " + doctor.getId());
+            esperarEnter();
+        } catch (IOException e) {
+            System.err.println("Error guardando doctor: " + e.getMessage());
+        }
+    }
 }
 
 
