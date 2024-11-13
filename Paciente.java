@@ -342,5 +342,4 @@ public class Paciente implements Serializable {
         return null;
     }
 
-    // Otros métodos como limpiarPantalla, esperarEnter, etc., ya están incluidos anteriormente
 }
