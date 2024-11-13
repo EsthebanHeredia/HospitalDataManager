@@ -304,5 +304,38 @@ public class Paciente implements Serializable {
         if (!tempFile.renameTo(inputFile)) {
             System.err.println("No se pudo renombrar el archivo temporal");
         }
+
+            public static Paciente buscarPacientePorId(String id) {
+        try (BufferedReader br = new BufferedReader(new FileReader(PACIENTE_CSV))) {
+            String line;
+            br.readLine(); // Saltar el encabezado
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+
+                if (data[0].equals(id)) {
+                    Paciente paciente = new Paciente(data[0], data[1]);
+
+                    // Verificar que el índice exista antes de acceder
+                    if (data.length > 2) {
+                        paciente.setHistorialMedico(parseHistorialMedico(data[2]));
+                    } else {
+                        paciente.setHistorialMedico(new ArrayList<>());
+                    }
+
+                    if (data.length > 3) {
+                        paciente.setCitasMedicas(parseCitasMedicas(data[3]));
+                    } else {
+                        paciente.setCitasMedicas(new ArrayList<>());
+                    }
+
+                    // 'UltimaCita' es opcional y no se utiliza directamente en este método
+                    return paciente;
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error buscando paciente: " + e.getMessage());
+        }
+        return null;
+    }
     }
 }
