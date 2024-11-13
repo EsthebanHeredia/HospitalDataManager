@@ -207,4 +207,24 @@ public class Paciente implements Serializable {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
+
+        private static String generarIdPaciente() {
+        int maxId = 1000;
+        try (BufferedReader br = new BufferedReader(new FileReader(PACIENTE_CSV))) {
+            String line;
+            br.readLine(); // Saltar el encabezado
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+                if (data.length > 0 && data[0].matches("\\d+")) {
+                    int id = Integer.parseInt(data[0]);
+                    if (id > maxId) {
+                        maxId = id;
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error leyendo IDs: " + e.getMessage());
+        }
+        return String.valueOf(maxId + 1);
+    }
 }
