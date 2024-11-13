@@ -136,4 +136,39 @@ public class Paciente implements Serializable {
             esperarEnter(scanner);
         }
     }
+
+     public void menuPaciente(Scanner scanner) {
+        boolean running = true;
+        while (running) {
+            limpiarPantalla();
+            System.out.println("Bienvenido, " + nombre);
+            System.out.println("1. Ver historial médico");
+            System.out.println("2. Agregar cita médica");
+            System.out.println("3. Salir");
+            System.out.print("Seleccione una opción: ");
+            try {
+                int option = scanner.nextInt();
+                scanner.nextLine();
+
+                switch (option) {
+                    case 1:
+                        mostrarHistorialMedico(scanner);
+                        break;
+                    case 2:
+                        agregarCitaMedica(scanner);
+                        break;
+                    case 3:
+                        running = false;
+                        break;
+                    default:
+                        System.out.println("Opción no válida, intente nuevamente.");
+                        esperarEnter(scanner);
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Entrada inválida. Por favor, ingrese un número.");
+                scanner.nextLine(); // Limpiar el buffer del scanner
+                esperarEnter(scanner);
+            }
+        }
+    }
 }
