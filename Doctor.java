@@ -19,7 +19,7 @@ public class Doctor implements Serializable {
         this.contrasena = contrasena;
     }
 
-        // Getters
+    // Getters
     public String getId() { return id; }
     public String getNombre() { return nombre; }
     public String getEspecialidad() { return especialidad; }
@@ -43,7 +43,7 @@ public class Doctor implements Serializable {
         }
     }
 
-        public void menuDoctor(Scanner scanner, DataHandler dataHandler) {
+    public void menuDoctor(Scanner scanner, DataHandler dataHandler) {
         boolean running = true;
         while (running) {
             try {
@@ -78,8 +78,9 @@ public class Doctor implements Serializable {
                 esperarEnter(scanner);
             }
         }
+    }
 
-                private void atenderPaciente(Scanner scanner, DataHandler dataHandler) {
+    private void atenderPaciente(Scanner scanner, DataHandler dataHandler) {
         try {
             System.out.print("Ingrese el ID del paciente: ");
             String pacienteId = scanner.nextLine();
@@ -146,14 +147,13 @@ public class Doctor implements Serializable {
             esperarEnter(scanner);
         }
     }
-    }
 
-        private static void esperarEnter(Scanner scanner) {
+    private static void esperarEnter(Scanner scanner) {
         System.out.println("\nPresione Enter para continuar...");
         scanner.nextLine();
     }
 
-        private void limpiarPantalla() {
+    private void limpiarPantalla() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }

@@ -19,14 +19,16 @@ public class Paciente implements Serializable {
         this.citasMedicas = new ArrayList<>();
     }
 
-        public String getId() { return id; }
+    // Getters y Setters
+    public String getId() { return id; }
     public String getNombre() { return nombre; }
     public List<HistorialMedico> getHistorialMedico() { return historialMedico; }
     public void setHistorialMedico(List<HistorialMedico> historialMedico) { this.historialMedico = historialMedico; }
     public List<CitaMedica> getCitasMedicas() { return citasMedicas; }
     public void setCitasMedicas(List<CitaMedica> citasMedicas) { this.citasMedicas = citasMedicas; }
 
-        public static List<HistorialMedico> parseHistorialMedico(String historialStr) {
+    // Métodos de parseo y formato
+    public static List<HistorialMedico> parseHistorialMedico(String historialStr) {
         List<HistorialMedico> historial = new ArrayList<>();
         if (historialStr.isEmpty() || historialStr.equals("\"\"")) return historial;
 
@@ -49,7 +51,7 @@ public class Paciente implements Serializable {
         return historial;
     }
 
-        public static List<CitaMedica> parseCitasMedicas(String citasStr) {
+    public static List<CitaMedica> parseCitasMedicas(String citasStr) {
         List<CitaMedica> citas = new ArrayList<>();
         if (citasStr.isEmpty() || citasStr.equals("\"\"")) return citas;
 
@@ -70,7 +72,7 @@ public class Paciente implements Serializable {
         return citas;
     }
 
-        public static String formatHistorialMedico(List<HistorialMedico> historialMedico) {
+    public static String formatHistorialMedico(List<HistorialMedico> historialMedico) {
         StringBuilder sb = new StringBuilder();
         sb.append("\"");
         for (HistorialMedico hm : historialMedico) {
@@ -85,7 +87,7 @@ public class Paciente implements Serializable {
         return sb.toString();
     }
 
-        public static String formatCitasMedicas(List<CitaMedica> citasMedicas) {
+    public static String formatCitasMedicas(List<CitaMedica> citasMedicas) {
         StringBuilder sb = new StringBuilder();
         sb.append("\"");
         for (CitaMedica cm : citasMedicas) {
@@ -96,7 +98,8 @@ public class Paciente implements Serializable {
         return sb.toString();
     }
 
-        public static void iniciarSesion(Scanner scanner) {
+    // Métodos principales
+    public static void iniciarSesion(Scanner scanner) {
         System.out.println("1. Soy un nuevo paciente");
         System.out.println("2. Ya tengo un ID de paciente");
         System.out.print("Seleccione una opción: ");
@@ -137,7 +140,7 @@ public class Paciente implements Serializable {
         }
     }
 
-     public void menuPaciente(Scanner scanner) {
+    public void menuPaciente(Scanner scanner) {
         boolean running = true;
         while (running) {
             limpiarPantalla();
@@ -172,7 +175,7 @@ public class Paciente implements Serializable {
         }
     }
 
-        private void mostrarHistorialMedico(Scanner scanner) {
+    private void mostrarHistorialMedico(Scanner scanner) {
         System.out.println("Historial Médico de " + nombre + ":");
         for (HistorialMedico historial : historialMedico) {
             System.out.println(historial);
@@ -180,7 +183,7 @@ public class Paciente implements Serializable {
         esperarEnter(scanner);
     }
 
-        private void agregarCitaMedica(Scanner scanner) {
+    private void agregarCitaMedica(Scanner scanner) {
         System.out.print("Ingrese la fecha de la cita (formato: dd MM yyyy HH mm): ");
         String fechaStr = scanner.nextLine();
         SimpleDateFormat sdf = new SimpleDateFormat("dd MM yyyy HH mm");
@@ -198,17 +201,17 @@ public class Paciente implements Serializable {
         esperarEnter(scanner);
     }
 
-        private static void esperarEnter(Scanner scanner) {
+    private static void esperarEnter(Scanner scanner) {
         System.out.println("\nPresione Enter para continuar...");
         scanner.nextLine();
     }
 
-        private void limpiarPantalla() {
+    private void limpiarPantalla() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
 
-        private static String generarIdPaciente() {
+    private static String generarIdPaciente() {
         int maxId = 1000;
         try (BufferedReader br = new BufferedReader(new FileReader(PACIENTE_CSV))) {
             String line;
@@ -304,8 +307,9 @@ public class Paciente implements Serializable {
         if (!tempFile.renameTo(inputFile)) {
             System.err.println("No se pudo renombrar el archivo temporal");
         }
+    }
 
-            public static Paciente buscarPacientePorId(String id) {
+    public static Paciente buscarPacientePorId(String id) {
         try (BufferedReader br = new BufferedReader(new FileReader(PACIENTE_CSV))) {
             String line;
             br.readLine(); // Saltar el encabezado
@@ -337,5 +341,6 @@ public class Paciente implements Serializable {
         }
         return null;
     }
-    }
+
+    // Otros métodos como limpiarPantalla, esperarEnter, etc., ya están incluidos anteriormente
 }

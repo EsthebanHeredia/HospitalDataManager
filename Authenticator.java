@@ -8,7 +8,7 @@ public class Authenticator implements Serializable {
         this.dataHandler = dataHandler;
     }
 
-        @SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")
     public <T> AuthResult<T> autenticar(String role, String nombre, String contrasena, String id) {
         if (role == null || role.trim().isEmpty()) {
             throw new IllegalArgumentException("El rol no puede estar vacío");

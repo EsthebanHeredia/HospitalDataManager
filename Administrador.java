@@ -1,4 +1,4 @@
-//Administrador.java
+// Administrador.java
 import java.io.*;
 import java.util.*;
 
@@ -8,13 +8,13 @@ public class Administrador implements Serializable {
     private String nombre;
     private String contrasena;
 
-      public Administrador(String id, String nombre, String contrasena) {
+    public Administrador(String id, String nombre, String contrasena) {
         this.id = id;
         this.nombre = nombre;
         this.contrasena = contrasena;
     }
 
-    //Getters
+    // Getters
     public String getId() { return id; }
     public String getNombre() { return nombre; }
     public String getContrasena() { return contrasena; }
@@ -93,12 +93,12 @@ public class Administrador implements Serializable {
         }
     }
 
-        private static void esperarEnter(Scanner scanner) {
+    private static void esperarEnter(Scanner scanner) {
         System.out.println("\nPresione Enter para continuar...");
         scanner.nextLine();
     }
 
-        private void limpiarPantalla() {
+    private void limpiarPantalla() {
         try {
             new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         } catch (IOException | InterruptedException ex) {
