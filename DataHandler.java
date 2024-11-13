@@ -208,6 +208,21 @@ public class DataHandler {
             System.err.println("Error guardando doctor: " + e.getMessage());
         }
     }
+
+        public void agregarClinica(Clinica clinica) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(CLINICA_CSV, true))) {
+            String record = String.format("%s,%s,%s",
+                    clinica.getId(),
+                    clinica.getNombre(),
+                    clinica.getDireccion());
+            bw.write(record);
+            bw.newLine();
+            System.out.println("Clínica agregada exitosamente. ID asignado: " + clinica.getId());
+            esperarEnter();
+        } catch (IOException e) {
+            System.err.println("Error guardando clínica: " + e.getMessage());
+        }
+    }
 }
 
 
