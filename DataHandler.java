@@ -369,6 +369,25 @@ public class DataHandler {
             System.err.println("Error agregando clínica: " + e.getMessage());
         }
     }
+
+    
+    public void agregarAdministradorConScanner(Scanner scanner) {
+        try {
+            String id = generarNextId(ADMIN_CSV);
+            System.out.println("ID asignado al nuevo administrador: " + id);
+
+            System.out.print("Ingrese nombre del administrador: ");
+            String nombre = scanner.nextLine().trim();
+
+            System.out.print("Ingrese contraseña: ");
+            String contrasena = scanner.nextLine().trim();
+
+            Administrador admin = new Administrador(id, nombre, contrasena);
+            agregarAdministrador(admin);
+        } catch (Exception e) {
+            System.err.println("Error agregando administrador: " + e.getMessage());
+        }
+    }
 }
 
 
