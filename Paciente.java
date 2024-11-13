@@ -18,4 +18,11 @@ public class Paciente implements Serializable {
         this.historialMedico = new ArrayList<>();
         this.citasMedicas = new ArrayList<>();
     }
+
+        public String getId() { return id; }
+    public String getNombre() { return nombre; }
+    public List<HistorialMedico> getHistorialMedico() { return historialMedico; }
+    public void setHistorialMedico(List<HistorialMedico> historialMedico) { this.historialMedico = historialMedico; }
+    public List<CitaMedica> getCitasMedicas() { return citasMedicas; }
+    public void setCitasMedicas(List<CitaMedica> citasMedicas) { this.citasMedicas = citasMedicas; }
 }
