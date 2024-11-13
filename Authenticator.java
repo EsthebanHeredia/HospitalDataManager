@@ -1,14 +1,10 @@
-public class Authenticator {
-    private static final String USERNAME = "admin";
-    private static final String PASSWORD = "password";
+import java.io.Serializable;
 
-    /**
-     * Verifica la contrasena y usuario del administrador.
-     * @param username del administrador
-     * @param password del adminstrador
-     * @return true = username y password are correct; false = username and password are inccorect.
-     */
-    public static boolean verifyCredentials(String username, String password) {
-        return USERNAME.equals(username) && PASSWORD.equals(password);
+public class Authenticator implements Serializable {
+    private static final long serialVersionUID = 1L;
+    private final DataHandler dataHandler;
+
+    public Authenticator(DataHandler dataHandler) {
+        this.dataHandler = dataHandler;
     }
 }
