@@ -1,18 +1,13 @@
 import java.io.*;
 import java.util.*;
 
-/**
- * Clase que maneja los datos del hospital.
- */
 public class DataHandler {
     private static final String PACIENTE_CSV = "data.csv";
     private static final String DOCTOR_CSV = "doctores.csv";
     private static final String ADMIN_CSV = "administradores.csv";
     private static final String CLINICA_CSV = "clinicas.csv";
 
-    /**
-     * Método para ver los pacientes.
-     */
+    // Métodos para ver entidades
     public void verPacientes() {
         try (BufferedReader br = new BufferedReader(new FileReader(PACIENTE_CSV))) {
             String line;
@@ -29,9 +24,6 @@ public class DataHandler {
         }
     }
 
-    /**
-     * Método para ver los doctores.
-     */
     public void verDoctores() {
         try (BufferedReader br = new BufferedReader(new FileReader(DOCTOR_CSV))) {
             String line;
@@ -49,9 +41,6 @@ public class DataHandler {
         }
     }
 
-    /**
-     * Método para ver las clínicas.
-     */
     public void verClinicas() {
         try (BufferedReader br = new BufferedReader(new FileReader(CLINICA_CSV))) {
             String line;
@@ -69,12 +58,7 @@ public class DataHandler {
         }
     }
 
-    /**
-     * Método para buscar un paciente por su ID.
-     * 
-     * @param id El ID del paciente.
-     * @return El objeto Paciente encontrado o null si no se encuentra.
-     */
+    // Métodos para buscar entidades
     public Paciente buscarPacientePorId(String id) {
         try (BufferedReader br = new BufferedReader(new FileReader(PACIENTE_CSV))) {
             String line;
@@ -99,13 +83,6 @@ public class DataHandler {
         return null;
     }
 
-    /**
-     * Método para buscar un doctor por sus credenciales.
-     * 
-     * @param nombre El nombre del doctor.
-     * @param contrasena La contraseña del doctor.
-     * @return El objeto Doctor encontrado o null si no se encuentra.
-     */
     public Doctor buscarDoctorPorCredenciales(String nombre, String contrasena) {
         try (BufferedReader br = new BufferedReader(new FileReader(DOCTOR_CSV))) {
             String line;
@@ -123,13 +100,6 @@ public class DataHandler {
         return null;
     }
 
-    /**
-     * Método para buscar un administrador por sus credenciales.
-     * 
-     * @param nombre El nombre del administrador.
-     * @param contrasena La contraseña del administrador.
-     * @return El objeto Administrador encontrado o null si no se encuentra.
-     */
     public Administrador buscarAdministradorPorCredenciales(String nombre, String contrasena) {
         try (BufferedReader br = new BufferedReader(new FileReader(ADMIN_CSV))) {
             String line;
@@ -147,11 +117,7 @@ public class DataHandler {
         return null;
     }
 
-    /**
-     * Método para agregar un paciente.
-     * 
-     * @param paciente El objeto Paciente a agregar.
-     */
+    // Métodos para agregar entidades
     public void agregarPaciente(Paciente paciente) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(PACIENTE_CSV, true))) {
             String historialStr = Paciente.formatHistorialMedico(paciente.getHistorialMedico());
@@ -171,11 +137,6 @@ public class DataHandler {
         }
     }
 
-    /**
-     * Método para guardar los cambios de un paciente.
-     * 
-     * @param paciente El objeto Paciente a guardar.
-     */
     public void guardarPaciente(Paciente paciente) {
         File inputFile = new File(PACIENTE_CSV);
         File tempFile = new File("temp_paciente.csv");
@@ -236,11 +197,6 @@ public class DataHandler {
         }
     }
 
-    /**
-     * Método para agregar un doctor.
-     * 
-     * @param doctor El objeto Doctor a agregar.
-     */
     public void agregarDoctor(Doctor doctor) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(DOCTOR_CSV, true))) {
             String record = String.format("%s,%s,%s,\"%s\"",
@@ -257,11 +213,6 @@ public class DataHandler {
         }
     }
 
-    /**
-     * Método para agregar una clínica.
-     * 
-     * @param clinica El objeto Clinica a agregar.
-     */
     public void agregarClinica(Clinica clinica) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(CLINICA_CSV, true))) {
             String record = String.format("%s,%s,%s",
@@ -277,11 +228,6 @@ public class DataHandler {
         }
     }
 
-    /**
-     * Método para agregar un administrador.
-     * 
-     * @param admin El objeto Administrador a agregar.
-     */
     public void agregarAdministrador(Administrador admin) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(ADMIN_CSV, true))) {
             String record = String.format("%s,%s,\"%s\"",
@@ -297,11 +243,7 @@ public class DataHandler {
         }
     }
 
-    /**
-     * Método para obtener todos los doctores.
-     * 
-     * @return Una lista de objetos Doctor.
-     */
+    // Métodos para obtener todas las entidades
     public List<Doctor> obtenerTodosDoctores() {
         List<Doctor> doctores = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(DOCTOR_CSV))) {
@@ -319,11 +261,6 @@ public class DataHandler {
         return doctores;
     }
 
-    /**
-     * Método para obtener todas las clínicas.
-     * 
-     * @return Una lista de objetos Clinica.
-     */
     public List<Clinica> obtenerTodasClinicas() {
         List<Clinica> clinicas = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(CLINICA_CSV))) {
@@ -341,11 +278,6 @@ public class DataHandler {
         return clinicas;
     }
 
-    /**
-     * Método para obtener todos los pacientes.
-     * 
-     * @return Una lista de objetos Paciente.
-     */
     public List<Paciente> obtenerTodosPacientes() {
         List<Paciente> pacientes = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(PACIENTE_CSV))) {
@@ -370,11 +302,6 @@ public class DataHandler {
         return pacientes;
     }
 
-    /**
-     * Método para obtener todos los administradores.
-     * 
-     * @return Una lista de objetos Administrador.
-     */
     public List<Administrador> obtenerTodosAdministradores() {
         List<Administrador> administradores = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(ADMIN_CSV))) {
@@ -392,11 +319,7 @@ public class DataHandler {
         return administradores;
     }
 
-    /**
-     * Método para agregar un paciente utilizando un Scanner.
-     * 
-     * @param scanner El objeto Scanner para leer la entrada del usuario.
-     */
+    // Métodos auxiliares para agregar entidades con Scanner y asignación automática de IDs
     public void agregarPacienteConScanner(Scanner scanner) {
         try {
             String id = generarNextId(PACIENTE_CSV);
@@ -412,11 +335,6 @@ public class DataHandler {
         }
     }
 
-    /**
-     * Método para agregar un doctor utilizando un Scanner.
-     * 
-     * @param scanner El objeto Scanner para leer la entrada del usuario.
-     */
     public void agregarDoctorConScanner(Scanner scanner) {
         try {
             String id = generarNextId(DOCTOR_CSV);
@@ -438,11 +356,6 @@ public class DataHandler {
         }
     }
 
-    /**
-     * Método para agregar una clínica utilizando un Scanner.
-     * 
-     * @param scanner El objeto Scanner para leer la entrada del usuario.
-     */
     public void agregarClinicaConScanner(Scanner scanner) {
         try {
             String id = generarNextId(CLINICA_CSV);
@@ -461,11 +374,6 @@ public class DataHandler {
         }
     }
 
-    /**
-     * Método para agregar un administrador utilizando un Scanner.
-     * 
-     * @param scanner El objeto Scanner para leer la entrada del usuario.
-     */
     public void agregarAdministradorConScanner(Scanner scanner) {
         try {
             String id = generarNextId(ADMIN_CSV);
@@ -484,7 +392,71 @@ public class DataHandler {
         }
     }
 
-    /**
-     * Método para generar el próximo ID único.
-     * 
-     * @param csvFile El archivo CSV donde buscar
+    // Método para generar el próximo ID único
+    private String generarNextId(String csvFile) {
+        long nextId = 1000;
+
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] data = parseCSVLine(line);
+                if (data.length > 0) {
+                    try {
+                        long id = Long.parseLong(data[0]);
+                        if (id >= nextId) {
+                            nextId = id + 1;
+                        }
+                    } catch (NumberFormatException e) {
+                        // Ignorar IDs que no sean numéricos
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error generando ID para " + csvFile + ": " + e.getMessage());
+        }
+
+        return String.valueOf(nextId);
+    }
+
+    // Método para esperar que el usuario presione Enter
+    private void esperarEnter() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\nPresione Enter para continuar...");
+        scanner.nextLine();
+    }
+
+    // Método para parsear una línea CSV teniendo en cuenta comillas
+    private String[] parseCSVLine(String line) {
+        List<String> tokens = new ArrayList<>();
+        boolean inQuotes = false;
+        StringBuilder sb = new StringBuilder();
+
+        for (char c : line.toCharArray()) {
+            if (c == '\"') {
+                inQuotes = !inQuotes;
+            } else if (c == ',' && !inQuotes) {
+                tokens.add(sb.toString().trim());
+                sb.setLength(0);
+            } else {
+                sb.append(c);
+            }
+        }
+        tokens.add(sb.toString().trim());
+
+        return tokens.toArray(new String[0]);
+    }
+
+    // Método auxiliar para limpiar la consola (funciona en Windows y Unix)
+    private void limpiarPantalla() {
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+            }
+        } catch (IOException | InterruptedException ex) {
+            // Ignorar errores
+        }
+    }
+}
