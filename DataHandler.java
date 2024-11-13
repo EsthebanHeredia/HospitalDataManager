@@ -297,6 +297,23 @@ public class DataHandler {
         }
         return pacientes;
     }
+
+        public List<Administrador> obtenerTodosAdministradores() {
+        List<Administrador> administradores = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(ADMIN_CSV))) {
+            String line;
+            br.readLine(); // Saltar encabezado
+            while ((line = br.readLine()) != null) {
+                String[] data = parseCSVLine(line);
+                if (data.length >= 3) {
+                    administradores.add(new Administrador(data[0], data[1], data[2]));
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error leyendo administradores: " + e.getMessage());
+        }
+        return administradores;
+    }
 }
 
 
