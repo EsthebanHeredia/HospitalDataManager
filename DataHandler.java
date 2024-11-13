@@ -238,6 +238,24 @@ public class DataHandler {
             System.err.println("Error guardando administrador: " + e.getMessage());
         }
     }
+
+        // Métodos para obtener todas las entidades
+    public List<Doctor> obtenerTodosDoctores() {
+        List<Doctor> doctores = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(DOCTOR_CSV))) {
+            String line;
+            br.readLine(); // Saltar encabezado
+            while ((line = br.readLine()) != null) {
+                String[] data = parseCSVLine(line);
+                if (data.length >= 4) {
+                    doctores.add(new Doctor(data[0], data[1], data[2], data[3]));
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error leyendo doctores: " + e.getMessage());
+        }
+        return doctores;
+    }
 }
 
 
