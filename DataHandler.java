@@ -314,6 +314,22 @@ public class DataHandler {
         }
         return administradores;
     }
+
+        // Métodos auxiliares para agregar entidades con Scanner y asignación automática de IDs
+    public void agregarPacienteConScanner(Scanner scanner) {
+        try {
+            String id = generarNextId(PACIENTE_CSV);
+            System.out.println("ID asignado al nuevo paciente: " + id);
+
+            System.out.print("Ingrese nombre del paciente: ");
+            String nombre = scanner.nextLine().trim();
+
+            Paciente paciente = new Paciente(id, nombre);
+            agregarPaciente(paciente);
+        } catch (Exception e) {
+            System.err.println("Error agregando paciente: " + e.getMessage());
+        }
+    }
 }
 
 
