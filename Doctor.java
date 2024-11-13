@@ -4,11 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
- * La clase {@code Doctor} representa a un doctor con un ID, nombre, especialidad y contraseña.
- * Esta clase implementa {@code Serializable} para permitir que sus instancias sean serializadas.
- * 
- * @autor 
- * @version 1.0
+ * Clase que representa a un Doctor.
  */
 public class Doctor implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -19,12 +15,12 @@ public class Doctor implements Serializable {
     private String contrasena;
 
     /**
-     * Construye un nuevo {@code Doctor} con el ID, nombre, especialidad y contraseña especificados.
+     * Constructor de la clase Doctor.
      * 
-     * @param id el ID del doctor
-     * @param nombre el nombre del doctor
-     * @param especialidad la especialidad del doctor
-     * @param contrasena la contraseña del doctor
+     * @param id El ID del doctor.
+     * @param nombre El nombre del doctor.
+     * @param especialidad La especialidad del doctor.
+     * @param contrasena La contraseña del doctor.
      */
     public Doctor(String id, String nombre, String especialidad, String contrasena) {
         this.id = id;
@@ -33,39 +29,17 @@ public class Doctor implements Serializable {
         this.contrasena = contrasena;
     }
 
-    /**
-     * Devuelve el ID del doctor.
-     * 
-     * @return el ID del doctor
-     */
+    // Getters
     public String getId() { return id; }
-
-    /**
-     * Devuelve el nombre del doctor.
-     * 
-     * @return el nombre del doctor
-     */
     public String getNombre() { return nombre; }
-
-    /**
-     * Devuelve la especialidad del doctor.
-     * 
-     * @return la especialidad del doctor
-     */
     public String getEspecialidad() { return especialidad; }
-
-    /**
-     * Devuelve la contraseña del doctor.
-     * 
-     * @return la contraseña del doctor
-     */
     public String getContrasena() { return contrasena; }
 
     /**
-     * Método estático para iniciar sesión de un doctor.
+     * Método para iniciar sesión como doctor.
      * 
-     * @param scanner el objeto {@code Scanner} para leer la entrada del usuario
-     * @param dataHandler el objeto {@code DataHandler} para manejar los datos
+     * @param scanner El objeto Scanner para leer la entrada del usuario.
+     * @param dataHandler El objeto DataHandler para manejar los datos.
      */
     public static void iniciarSesion(Scanner scanner, DataHandler dataHandler) {
         System.out.print("Ingrese su usuario: ");
@@ -86,10 +60,10 @@ public class Doctor implements Serializable {
     }
 
     /**
-     * Muestra el menú del doctor y maneja las opciones seleccionadas.
+     * Método para mostrar el menú del doctor.
      * 
-     * @param scanner el objeto {@code Scanner} para leer la entrada del usuario
-     * @param dataHandler el objeto {@code DataHandler} para manejar los datos
+     * @param scanner El objeto Scanner para leer la entrada del usuario.
+     * @param dataHandler El objeto DataHandler para manejar los datos.
      */
     public void menuDoctor(Scanner scanner, DataHandler dataHandler) {
         boolean running = true;
@@ -129,10 +103,10 @@ public class Doctor implements Serializable {
     }
 
     /**
-     * Atiende a un paciente, registrando los detalles de la consulta.
+     * Método para atender a un paciente.
      * 
-     * @param scanner el objeto {@code Scanner} para leer la entrada del usuario
-     * @param dataHandler el objeto {@code DataHandler} para manejar los datos
+     * @param scanner El objeto Scanner para leer la entrada del usuario.
+     * @param dataHandler El objeto DataHandler para manejar los datos.
      */
     private void atenderPaciente(Scanner scanner, DataHandler dataHandler) {
         try {
@@ -203,9 +177,9 @@ public class Doctor implements Serializable {
     }
 
     /**
-     * Espera a que el usuario presione Enter para continuar.
+     * Método para esperar que el usuario presione Enter.
      * 
-     * @param scanner el objeto {@code Scanner} para leer la entrada del usuario
+     * @param scanner El objeto Scanner para leer la entrada del usuario.
      */
     private static void esperarEnter(Scanner scanner) {
         System.out.println("\nPresione Enter para continuar...");
@@ -213,7 +187,7 @@ public class Doctor implements Serializable {
     }
 
     /**
-     * Limpia la pantalla de la consola.
+     * Método para limpiar la pantalla.
      */
     private void limpiarPantalla() {
         System.out.print("\033[H\033[2J");
