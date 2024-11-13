@@ -273,6 +273,30 @@ public class DataHandler {
         }
         return clinicas;
     }
+
+        public List<Paciente> obtenerTodosPacientes() {
+        List<Paciente> pacientes = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(PACIENTE_CSV))) {
+            String line;
+            br.readLine(); // Saltar encabezado
+            while ((line = br.readLine()) != null) {
+                String[] data = parseCSVLine(line);
+                if (data.length >= 2) {
+                    Paciente paciente = new Paciente(data[0], data[1]);
+                    if (data.length > 2) {
+                        paciente.setHistorialMedico(Paciente.parseHistorialMedico(data[2]));
+                    }
+                    if (data.length > 3) {
+                        paciente.setCitasMedicas(Paciente.parseCitasMedicas(data[3]));
+                    }
+                    pacientes.add(paciente);
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error leyendo pacientes: " + e.getMessage());
+        }
+        return pacientes;
+    }
 }
 
 
