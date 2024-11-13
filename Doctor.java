@@ -42,4 +42,41 @@ public class Doctor implements Serializable {
             esperarEnter(scanner);
         }
     }
+
+        public void menuDoctor(Scanner scanner, DataHandler dataHandler) {
+        boolean running = true;
+        while (running) {
+            try {
+                limpiarPantalla();
+                System.out.println("=== MENÚ DOCTOR ===");
+                System.out.println("1. Ver pacientes");
+                System.out.println("2. Atender paciente");
+                System.out.println("3. Salir");
+                System.out.print("Seleccione una opción: ");
+
+                int opcion = Integer.parseInt(scanner.nextLine());
+                switch (opcion) {
+                    case 1:
+                        dataHandler.verPacientes();
+                        esperarEnter(scanner);
+                        break;
+                    case 2:
+                        atenderPaciente(scanner, dataHandler);
+                        break;
+                    case 3:
+                        running = false;
+                        break;
+                    default:
+                        System.out.println("Opción inválida");
+                        esperarEnter(scanner);
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Por favor ingrese un número válido.");
+                esperarEnter(scanner);
+            } catch (Exception e) {
+                System.out.println("Error inesperado: " + e.getMessage());
+                esperarEnter(scanner);
+            }
+        }
+    }
 }
