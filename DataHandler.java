@@ -414,6 +414,13 @@ public class DataHandler {
 
         return String.valueOf(nextId);
     }
+
+        // Método para esperar que el usuario presione Enter
+    private void esperarEnter() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\nPresione Enter para continuar...");
+        scanner.nextLine();
+    }
 }
 
 
