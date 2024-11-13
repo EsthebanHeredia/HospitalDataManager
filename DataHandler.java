@@ -132,6 +132,66 @@ public class DataHandler {
             System.err.println("Error guardando paciente: " + e.getMessage());
         }
     }
+
+        public void guardarPaciente(Paciente paciente) {
+        File inputFile = new File(PACIENTE_CSV);
+        File tempFile = new File("temp_paciente.csv");
+
+        try (BufferedReader br = new BufferedReader(new FileReader(inputFile));
+             PrintWriter pw = new PrintWriter(new FileWriter(tempFile))) {
+
+            String line;
+            boolean found = false;
+            while ((line = br.readLine()) != null) {
+                String[] data = parseCSVLine(line);
+
+                if (data.length > 0 && data[0].equals(paciente.getId())) {
+                    found = true;
+                    // Actualizar los campos necesarios
+                    String historialStr = Paciente.formatHistorialMedico(paciente.getHistorialMedico());
+                    String citasStr = Paciente.formatCitasMedicas(paciente.getCitasMedicas());
+                    String ultimaCita = paciente.getCitasMedicas().isEmpty() ? "" :
+                        paciente.getCitasMedicas().get(paciente.getCitasMedicas().size() - 1).toString();
+
+                    String updatedRecord = String.format("%s,%s,\"%s\",\"%s\",\"%s\"",
+                            paciente.getId(),
+                            paciente.getNombre(),
+                            historialStr,
+                            citasStr,
+                            ultimaCita);
+                    pw.println(updatedRecord);
+                } else {
+                    pw.println(line);
+                }
+            }
+            if (!found) {
+                // Si el paciente es nuevo, agregar al archivo
+                String historialStr = Paciente.formatHistorialMedico(paciente.getHistorialMedico());
+                String citasStr = Paciente.formatCitasMedicas(paciente.getCitasMedicas());
+                String ultimaCita = paciente.getCitasMedicas().isEmpty() ? "" :
+                        paciente.getCitasMedicas().get(paciente.getCitasMedicas().size() - 1).toString();
+                String newRecord = String.format("%s,%s,\"%s\",\"%s\",\"%s\"",
+                        paciente.getId(),
+                        paciente.getNombre(),
+                        historialStr,
+                        citasStr,
+                        ultimaCita);
+                pw.println(newRecord);
+            }
+        } catch (IOException e) {
+            System.err.println("Error guardando paciente: " + e.getMessage());
+            return;
+        }
+
+        // Reemplazar el archivo original por el actualizado
+        if (!inputFile.delete()) {
+            System.err.println("No se pudo eliminar el archivo original");
+            return;
+        }
+        if (!tempFile.renameTo(inputFile)) {
+            System.err.println("No se pudo renombrar el archivo temporal");
+        }
+    }
 }
 
 
