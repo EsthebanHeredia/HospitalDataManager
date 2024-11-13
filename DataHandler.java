@@ -113,6 +113,25 @@ public class DataHandler {
         }
         return null;
     }
+
+        public void agregarPaciente(Paciente paciente) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(PACIENTE_CSV, true))) {
+            String historialStr = Paciente.formatHistorialMedico(paciente.getHistorialMedico());
+            String citasStr = Paciente.formatCitasMedicas(paciente.getCitasMedicas());
+            String record = String.format("%s,%s,\"%s\",\"%s\",\"%s\"",
+                    paciente.getId(), 
+                    paciente.getNombre(),
+                    historialStr,
+                    citasStr,
+                    ""); // UltimaCita inicialmente vacía
+            bw.write(record);
+            bw.newLine();
+            System.out.println("Paciente agregado exitosamente. ID asignado: " + paciente.getId());
+            esperarEnter();
+        } catch (IOException e) {
+            System.err.println("Error guardando paciente: " + e.getMessage());
+        }
+    }
 }
 
 
