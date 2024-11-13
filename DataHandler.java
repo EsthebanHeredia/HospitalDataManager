@@ -388,6 +388,32 @@ public class DataHandler {
             System.err.println("Error agregando administrador: " + e.getMessage());
         }
     }
+
+        // Método para generar el próximo ID único
+    private String generarNextId(String csvFile) {
+        long nextId = 1000;
+
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] data = parseCSVLine(line);
+                if (data.length > 0) {
+                    try {
+                        long id = Long.parseLong(data[0]);
+                        if (id >= nextId) {
+                            nextId = id + 1;
+                        }
+                    } catch (NumberFormatException e) {
+                        // Ignorar IDs que no sean numéricos
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error generando ID para " + csvFile + ": " + e.getMessage());
+        }
+
+        return String.valueOf(nextId);
+    }
 }
 
 
