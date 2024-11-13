@@ -78,5 +78,75 @@ public class Doctor implements Serializable {
                 esperarEnter(scanner);
             }
         }
+
+                private void atenderPaciente(Scanner scanner, DataHandler dataHandler) {
+        try {
+            System.out.print("Ingrese el ID del paciente: ");
+            String pacienteId = scanner.nextLine();
+            Paciente paciente = Paciente.buscarPacientePorId(pacienteId);
+            if (paciente == null) {
+                System.out.println("Paciente no encontrado.");
+                esperarEnter(scanner);
+                return;
+            }
+
+            List<CitaMedica> citas = paciente.getCitasMedicas();
+            if (citas.isEmpty()) {
+                System.out.println("El paciente no tiene citas previas.");
+                esperarEnter(scanner);
+                return;
+            }
+
+            CitaMedica ultimaCita = citas.get(citas.size() - 1);
+            System.out.println("Última cita:");
+            System.out.println("Fecha: " + new SimpleDateFormat("dd MM yyyy HH mm").format(ultimaCita.getFecha()));
+            System.out.println("Descripción: " + ultimaCita.getDescripcion());
+
+            System.out.println("Ingrese los detalles de la consulta:");
+
+            System.out.print("Ingrese la fecha de la consulta (formato: dd MM yyyy HH mm): ");
+            String fechaStr = scanner.nextLine();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd MM yyyy HH mm");
+            Date fecha;
+            try {
+                fecha = sdf.parse(fechaStr);
+            } catch (ParseException e) {
+                System.err.println("Error al parsear la fecha: " + e.getMessage());
+                return;
+            }
+
+            System.out.print("Ingrese los síntomas: ");
+            String sintomas = scanner.nextLine();
+            System.out.print("Ingrese el diagnóstico: ");
+            String diagnostico = scanner.nextLine();
+            System.out.print("Ingrese la receta: ");
+            String receta = scanner.nextLine();
+
+            System.out.println("Seleccione la clínica donde se atendió al paciente:");
+            List<Clinica> clinicas = dataHandler.obtenerTodasClinicas();
+            for (int i = 0; i < clinicas.size(); i++) {
+                System.out.println((i + 1) + ". " + clinicas.get(i).getNombre());
+            }
+            int clinicaIndex = Integer.parseInt(scanner.nextLine()) - 1;
+            if (clinicaIndex < 0 || clinicaIndex >= clinicas.size()) {
+                System.out.println("Opción de clínica inválida");
+                return;
+            }
+            String clinica = clinicas.get(clinicaIndex).getNombre();
+
+            HistorialMedico historial = new HistorialMedico(fecha, nombre, sintomas, diagnostico, receta, clinica);
+            paciente.getHistorialMedico().add(historial);
+
+            // Guardar los cambios del historial médico del paciente
+            paciente.guardarPaciente();
+            System.out.println("Consulta registrada exitosamente.");
+        } catch (Exception e) {
+            System.out.println("Error al atender paciente: " + e.getMessage());
+        } finally {
+            esperarEnter(scanner);
+        }
     }
+    }
+
+    
 }
