@@ -223,6 +223,21 @@ public class DataHandler {
             System.err.println("Error guardando clínica: " + e.getMessage());
         }
     }
+
+        public void agregarAdministrador(Administrador admin) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(ADMIN_CSV, true))) {
+            String record = String.format("%s,%s,\"%s\"",
+                    admin.getId(),
+                    admin.getNombre(),
+                    admin.getContrasena());
+            bw.write(record);
+            bw.newLine();
+            System.out.println("Administrador agregado exitosamente. ID asignado: " + admin.getId());
+            esperarEnter();
+        } catch (IOException e) {
+            System.err.println("Error guardando administrador: " + e.getMessage());
+        }
+    }
 }
 
 
