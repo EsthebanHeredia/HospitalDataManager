@@ -12,4 +12,9 @@ public class Clinica implements Serializable {
         this.nombre = nombre;
         this.direccion = direccion;
     }
+
+        // Getters
+    public String getId() { return id; }
+    public String getNombre() { return nombre; }
+    public String getDireccion() { return direccion; }
 }
