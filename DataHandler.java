@@ -256,6 +256,23 @@ public class DataHandler {
         }
         return doctores;
     }
+
+        public List<Clinica> obtenerTodasClinicas() {
+        List<Clinica> clinicas = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(CLINICA_CSV))) {
+            String line;
+            br.readLine(); // Saltar encabezado
+            while ((line = br.readLine()) != null) {
+                String[] data = parseCSVLine(line);
+                if (data.length >= 3) {
+                    clinicas.add(new Clinica(data[0], data[1], data[2]));
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error leyendo clínicas: " + e.getMessage());
+        }
+        return clinicas;
+    }
 }
 
 
