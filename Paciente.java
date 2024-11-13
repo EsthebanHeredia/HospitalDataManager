@@ -179,4 +179,22 @@ public class Paciente implements Serializable {
         }
         esperarEnter(scanner);
     }
+
+        private void agregarCitaMedica(Scanner scanner) {
+        System.out.print("Ingrese la fecha de la cita (formato: dd MM yyyy HH mm): ");
+        String fechaStr = scanner.nextLine();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MM yyyy HH mm");
+        try {
+            Date fecha = sdf.parse(fechaStr);
+            System.out.print("Ingrese la descripción de la cita: ");
+            String descripcion = scanner.nextLine();
+            CitaMedica cita = new CitaMedica(fecha, descripcion);
+            citasMedicas.add(cita);
+            guardarPaciente();
+            System.out.println("Cita médica agregada.");
+        } catch (ParseException e) {
+            System.err.println("Error al parsear la fecha: " + e.getMessage());
+        }
+        esperarEnter(scanner);
+    }
 }
