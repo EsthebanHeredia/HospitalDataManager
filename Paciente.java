@@ -84,4 +84,15 @@ public class Paciente implements Serializable {
         sb.append("\"");
         return sb.toString();
     }
+
+        public static String formatCitasMedicas(List<CitaMedica> citasMedicas) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\"");
+        for (CitaMedica cm : citasMedicas) {
+            sb.append(cm.getFecha().getTime()).append("|")
+              .append(cm.getDescripcion()).append(";");
+        }
+        sb.append("\"");
+        return sb.toString();
+    }
 }
