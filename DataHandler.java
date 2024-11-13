@@ -421,6 +421,27 @@ public class DataHandler {
         System.out.println("\nPresione Enter para continuar...");
         scanner.nextLine();
     }
+
+        // Método para parsear una línea CSV teniendo en cuenta comillas
+    private String[] parseCSVLine(String line) {
+        List<String> tokens = new ArrayList<>();
+        boolean inQuotes = false;
+        StringBuilder sb = new StringBuilder();
+
+        for (char c : line.toCharArray()) {
+            if (c == '\"') {
+                inQuotes = !inQuotes;
+            } else if (c == ',' && !inQuotes) {
+                tokens.add(sb.toString().trim());
+                sb.setLength(0);
+            } else {
+                sb.append(c);
+            }
+        }
+        tokens.add(sb.toString().trim());
+
+        return tokens.toArray(new String[0]);
+    }
 }
 
 
