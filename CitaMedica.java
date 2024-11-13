@@ -11,4 +11,14 @@ public class CitaMedica implements Serializable {
         this.fecha = fecha;
         this.descripcion = descripcion;
     }
+
+        // Getters
+    public Date getFecha() { return fecha; }
+    public String getDescripcion() { return descripcion; }
+
+    @Override
+    public String toString() {
+        return "Fecha: " + fecha + ", Descripción: " + descripcion;
+    }
+    
 }
