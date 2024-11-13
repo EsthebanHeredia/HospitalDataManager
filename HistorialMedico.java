@@ -28,4 +28,14 @@ public class HistorialMedico implements Serializable {
     public String getReceta() { return receta; }
     public String getClinica() { return clinica; }
 
+        @Override
+    public String toString() {
+        return "Fecha: " + fecha +
+               ", Doctor: " + doctor +
+               ", Diagnóstico: " + diagnostico +
+               ", Síntomas: " + sintomas +
+               ", Receta: " + receta +
+               ", Clínica: " + clinica;
+    }
+
 }
