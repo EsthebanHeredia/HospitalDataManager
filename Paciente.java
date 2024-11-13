@@ -227,4 +227,82 @@ public class Paciente implements Serializable {
         }
         return String.valueOf(maxId + 1);
     }
+
+    public void guardarPaciente() {
+        File inputFile = new File(PACIENTE_CSV);
+        File tempFile = new File("temp_paciente.csv");
+
+        try (BufferedReader br = new BufferedReader(new FileReader(inputFile));
+             PrintWriter pw = new PrintWriter(new FileWriter(tempFile))) {
+
+            String line;
+            boolean found = false;
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+
+                if (data[0].equals(id)) {
+                    found = true;
+                    // Actualizar los campos necesarios
+                    // HistorialMedico
+                    if (data.length > 2) {
+                        data[2] = formatHistorialMedico(historialMedico);
+                    } else {
+                        data = Arrays.copyOf(data, 3);
+                        data[2] = formatHistorialMedico(historialMedico);
+                    }
+
+                    // CitasMedicas
+                    if (data.length > 3) {
+                        data[3] = formatCitasMedicas(citasMedicas);
+                    } else {
+                        data = Arrays.copyOf(data, 4);
+                        data[3] = formatCitasMedicas(citasMedicas);
+                    }
+
+                    // UltimaCita
+                    String ultimaCita = citasMedicas.isEmpty() ? "" :
+                        "\"" + citasMedicas.get(citasMedicas.size() - 1).getFecha().getTime() + "|"
+                        + citasMedicas.get(citasMedicas.size() - 1).getDescripcion() + "\"";
+
+                    if (data.length >= 5) {
+                        data[4] = ultimaCita;
+                    } else {
+                        data = Arrays.copyOf(data, 5);
+                        data[4] = ultimaCita;
+                    }
+
+                    // Reconstruir la línea del CSV
+                    StringBuilder sb = new StringBuilder();
+                    for (int i = 0; i < data.length; i++) {
+                        sb.append(data[i]);
+                        if (i < data.length - 1) {
+                            sb.append(",");
+                        }
+                    }
+                    pw.println(sb.toString());
+                } else {
+                    pw.println(line);
+                }
+            }
+            if (!found) {
+                // Si el paciente es nuevo, agregar al archivo
+                String newRecord = id + "," + nombre + "," + formatHistorialMedico(historialMedico) + ","
+                        + formatCitasMedicas(citasMedicas) + ","
+                        + (citasMedicas.isEmpty() ? "" : "\"" + citasMedicas.get(citasMedicas.size() - 1).getFecha().getTime()
+                        + "|" + citasMedicas.get(citasMedicas.size() - 1).getDescripcion() + "\"");
+                pw.println(newRecord);
+            }
+        } catch (IOException e) {
+            System.err.println("Error guardando paciente: " + e.getMessage());
+        }
+
+        // Reemplazar el archivo original por el actualizado
+        if (!inputFile.delete()) {
+            System.err.println("No se pudo eliminar el archivo original");
+            return;
+        }
+        if (!tempFile.renameTo(inputFile)) {
+            System.err.println("No se pudo renombrar el archivo temporal");
+        }
+    }
 }
