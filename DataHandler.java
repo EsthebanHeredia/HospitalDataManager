@@ -330,6 +330,27 @@ public class DataHandler {
             System.err.println("Error agregando paciente: " + e.getMessage());
         }
     }
+
+        public void agregarDoctorConScanner(Scanner scanner) {
+        try {
+            String id = generarNextId(DOCTOR_CSV);
+            System.out.println("ID asignado al nuevo doctor: " + id);
+
+            System.out.print("Ingrese nombre del doctor: ");
+            String nombre = scanner.nextLine().trim();
+
+            System.out.print("Ingrese especialidad: ");
+            String especialidad = scanner.nextLine().trim();
+
+            System.out.print("Ingrese contraseña: ");
+            String contrasena = scanner.nextLine().trim();
+
+            Doctor doctor = new Doctor(id, nombre, especialidad, contrasena);
+            agregarDoctor(doctor);
+        } catch (Exception e) {
+            System.err.println("Error agregando doctor: " + e.getMessage());
+        }
+    }
 }
 
 
