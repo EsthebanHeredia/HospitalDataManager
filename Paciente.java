@@ -69,4 +69,19 @@ public class Paciente implements Serializable {
         }
         return citas;
     }
+
+        public static String formatHistorialMedico(List<HistorialMedico> historialMedico) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\"");
+        for (HistorialMedico hm : historialMedico) {
+            sb.append(hm.getFecha().getTime()).append("|")
+              .append(hm.getDoctor()).append("|")
+              .append(hm.getSintomas()).append("|")
+              .append(hm.getDiagnostico()).append("|")
+              .append(hm.getReceta()).append("|")
+              .append(hm.getClinica()).append(";");
+        }
+        sb.append("\"");
+        return sb.toString();
+    }
 }
