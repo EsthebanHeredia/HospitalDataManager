@@ -96,6 +96,23 @@ public class DataHandler {
         }
         return null;
     }
+
+        public Administrador buscarAdministradorPorCredenciales(String nombre, String contrasena) {
+        try (BufferedReader br = new BufferedReader(new FileReader(ADMIN_CSV))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] data = parseCSVLine(line);
+                if (data.length > 0 && data[1].equals(nombre) && data[2].equals(contrasena)) {
+                    return new Administrador(data[0], data[1], data[2]);
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error buscando administrador: " + e.getMessage());
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.err.println("Error en formato de archivo de administradores: " + e.getMessage());
+        }
+        return null;
+    }
 }
 
 
