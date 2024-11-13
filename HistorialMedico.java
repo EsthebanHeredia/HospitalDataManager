@@ -20,4 +20,12 @@ public class HistorialMedico implements Serializable {
         this.clinica = clinica;
     }
 
+        // Getters
+    public Date getFecha() { return fecha; }
+    public String getDoctor() { return doctor; }
+    public String getDiagnostico() { return diagnostico; }
+    public String getSintomas() { return sintomas; }
+    public String getReceta() { return receta; }
+    public String getClinica() { return clinica; }
+
 }
