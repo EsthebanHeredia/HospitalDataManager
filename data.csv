@@ -1,0 +1,11 @@
+ID,Nombre,HistorialMedico,CitasMedicas,UltimaCita
+1011,Isabel Vargas,"1684627200000|Dr. Brown|Presión ocular|Glaucoma|Timolol|Clinica Central;1898694000000|Dr. Ana Torres|gripe|fiebre |pastillas|Clínica Este;","1686268800000|Control oftalmológico;1675425600000|fiebre;","1675425600000|fiebre"
+1010,Luis Morales,"1684540800000|Dr. Johnson|Insomnio|Trastorno del sueño|Zolpidem|Clinica Norte;1684886400000|Dr. Smith|Ansiedad|Ansiedad generalizada|Alprazolam|Clinica Central;1107338400000|Dr. Davis|infeccion |rabia |pastillas|Clinica Norte;1115118000000|Dr. Davis|problema cerebral |migraña |pastillas|Clinica Norte;","1686182400000|Evaluación psiquiátrica;1012636800000|rabia;1075716000000|migraña;","1075716000000|migraña"
+1008,Diego Flores,"1684368000000|Dr. Wilson|Dolor espalda|Hernia discal|Pregabalina|Clinica Central;1684713600000|Dr. Brown|Control dolor|Mejora parcial|Fisioterapia|Clinica Sur;","1686009600000|Resonancia;","1686009600000|Resonancia;"
+1007,Sofía Torres,"1684281600000|Dr. Smith|Rinitis|Alergia|Loratadina|Clinica Norte;1677758400000|Dr. Brown|infeccion|vomito |pastillas|Clínica Norte;1714748400000|Dr. Brown|estornudos |pastillas|pastillas|Clínica Este;","1685923200000|Control alergia;1906801200000|fractura;","1906801200000|fractura"
+1006,Pedro Ramírez,"1684195200000|Dr. Brown|Tos persistente|Bronquitis|Amoxicilina|Clinica Central;1684540800000|Dr. Davis|Control|Mejora|Continuar tratamiento|Clinica Norte;","1685836800000|Control respiratorio;","1685836800000|Control respiratorio;"
+1005,Laura Sánchez,"1684108800000|Dr. Wilson|Dolor rodilla|Tendinitis|Ibuprofeno 600mg|Clinica Sur;","1685750400000|Fisioterapia;","1685750400000|Fisioterapia;"
+1004,Ana Gómez,"1684022400000|Dr. Johnson|Migraña crónica|Cefalea|Sumatriptan|Clinica Norte;1684368000000|Dr. Smith|Náuseas|Gastritis|Ranitidina|Clinica Central;","1685664000000|Control migraña;","1685664000000|Control migraña;"
+1012,sofia,"""","""",""
+1013,Estheban Heredia,"""","""",""
+1014,David Mogollon,"-29857405860000|Dr. Brown|fpafha|tos |hapghpvahfa|Magna Optica;","1709663700000|Cita de rutina;1701627720000|Cita de rutina 2;","1701627720000|Cita de rutina 2"
