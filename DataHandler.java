@@ -39,6 +39,23 @@ public class DataHandler {
             System.err.println("Error en formato de archivo de doctores: " + e.getMessage());
         }
     }
+
+        public void verClinicas() {
+        try (BufferedReader br = new BufferedReader(new FileReader(CLINICA_CSV))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] data = parseCSVLine(line);
+                if (data.length > 0 && !data[0].equalsIgnoreCase("ID")) {
+                    System.out.println("ID: " + data[0] + ", Nombre: " + data[1] + 
+                                     ", Dirección: " + data[2]);
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error leyendo clínicas: " + e.getMessage());
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.err.println("Error en formato de archivo de clínicas: " + e.getMessage());
+        }
+    }
 }
 
 
