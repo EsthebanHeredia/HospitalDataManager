@@ -442,6 +442,20 @@ public class DataHandler {
 
         return tokens.toArray(new String[0]);
     }
+
+        // Método auxiliar para limpiar la consola (funciona en Windows y Unix)
+    private void limpiarPantalla() {
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+            }
+        } catch (IOException | InterruptedException ex) {
+            // Ignorar errores
+        }
+    }
 }
 
 
