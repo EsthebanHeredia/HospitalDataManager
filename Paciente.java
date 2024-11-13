@@ -25,4 +25,27 @@ public class Paciente implements Serializable {
     public void setHistorialMedico(List<HistorialMedico> historialMedico) { this.historialMedico = historialMedico; }
     public List<CitaMedica> getCitasMedicas() { return citasMedicas; }
     public void setCitasMedicas(List<CitaMedica> citasMedicas) { this.citasMedicas = citasMedicas; }
+
+        public static List<HistorialMedico> parseHistorialMedico(String historialStr) {
+        List<HistorialMedico> historial = new ArrayList<>();
+        if (historialStr.isEmpty() || historialStr.equals("\"\"")) return historial;
+
+        String[] registros = historialStr.replace("\"", "").split(";");
+        for (String registro : registros) {
+            if (!registro.isEmpty()) {
+                String[] datos = registro.split("\\|");
+                if (datos.length >= 6) {
+                    try {
+                        Date fecha = new Date(Long.parseLong(datos[0]));
+                        historial.add(new HistorialMedico(
+                            fecha, datos[1], datos[2], datos[3], datos[4], datos[5]
+                        ));
+                    } catch (NumberFormatException e) {
+                        System.err.println("Error al parsear fecha: " + e.getMessage());
+                    }
+                }
+            }
+        }
+        return historial;
+    }
 }
